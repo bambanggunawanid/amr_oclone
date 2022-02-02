@@ -1,0 +1,43 @@
+<launch>
+
+  <!-- Lidar. Source: git clone https://github.com/EAIBOT/ydlidar -->
+  <node name="rplidarNode"          pkg="rplidar_ros"  type="rplidarNode" output="screen">
+  <param name="serial_port"         type="string" value="/dev/ttyUSB1"/>
+  <param name="serial_baudrate"     type="int"    value="115200"/><!--A1/A2 -->
+  <param name="frame_id"            type="string" value="laser"/>
+  <param name="inverted"            type="bool"   value="false"/>
+  <param name="angle_compensate"    type="bool"   value="true"/>
+  </node>
+
+  <node pkg="laser_filters" type="scan_to_scan_filter_chain" name="laser_filter">
+    <rosparam command="load" file="$(find robaka-ros)/conf/laser_filters.yaml" />
+    <remap from="scan" to="base_scan" />
+    <remap from="scan_filtered" to="scan" />
+  </node>
+
+  <!-- IMU -->
+  <node pkg="adafruit_imu" type="imu_node" name="imu_node" output="screen" />
+  <!-- IMU filter -->
+  <include file="$(find robaka-ros)/launch/include/imu.launch" />
+
+  <!-- Localization -->
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
+    <remap from="odometry/filtered" to="odom" />
+    <rosparam command="load" file="$(find robaka-ros)/conf/robot_localization.yaml" />
+  </node>
+
+
+  <!-- Model and state publisher -->
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find robaka-ros)/urdf/robaka_v2.xacro"/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+
+  <node pkg="twist_mux" type="twist_mux" name="twist_mux">
+    <rosparam command="load" file="$(find robaka-ros)/conf/twist_mux.yaml" />
+    <remap from="cmd_vel_out" to="hoverboard_velocity_controller/cmd_vel"/>
+  </node>
+
+  <!-- ROS control -->
+  <include file="$(find hoverboard_driver)/launch/hoverboard.launch" />
+
+</launch>
