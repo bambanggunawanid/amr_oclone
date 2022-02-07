@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
   <!-- Desclare launch rviz first -->
-  <!-- <arg name="use_rviz" default="true"/> -->
+  <arg name="use_rviz" default="true"/>
 
   <!-- Static transformation for TF -->
   <node pkg="tf" type="static_transform_publisher" name="base_laser_broadcaster" args="0 0.06 0.02 0 0 0 base_link laser 100" />
@@ -20,7 +20,7 @@
   <include file="$(find mpu6050_driver)/launch/mpu6050_driver.launch" />
 
   <!-- Desclare map file -->
-  <arg name="map_file" default="$(find mobile_robot_autonomous_navigation)/maps/map.yaml"/>
+  <arg name="map_file" default="$(find mobile_robot_autonomous_navigation)/maps/tesaja.yaml"/>
 
   <!-- Robot model -->
   <arg name="model" default="$(find mobile_robot_autonomous_navigation)/urdf/mobile_robot_v2.xacro"/>
@@ -42,7 +42,7 @@
   </node>
 
   <!-- Rviz config param declare -->
-  <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find mobile_robot_autonomous_navigation)/config/nav_config.rviz"/> -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find mobile_robot_autonomous_navigation)/config/nav_config.rviz"/>
 
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" respawn="true" />
 

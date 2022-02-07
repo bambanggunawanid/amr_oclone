@@ -1,9 +1,0 @@
-<launch>
-
-    <include file="$(find robaka-ros)/launch/headlessrobaka.launch" pass_all_args="true" />
-    <include file="$(find robaka-ros)/launch/online_slam.launch"/>
-
-    <!--- Run Move Base -->
-    <include file="$(find robaka-ros)/launch/move_base_main.launch" />
-
-</launch>

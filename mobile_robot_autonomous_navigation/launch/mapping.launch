@@ -25,7 +25,7 @@
             hoverboard_velocity_controller" >
   </node>
 
-  <node name="telop" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py">
+  <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering.py">
 		<remap from="/cmd_vel" to="/hoverboard_velocity_controller/cmd_vel"/>
   </node>
 
