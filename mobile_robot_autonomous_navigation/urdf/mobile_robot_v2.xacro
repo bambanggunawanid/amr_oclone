@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="mobile_robot">
 
-  <xacro:property name="base_width" value="0.3"/>
-  <xacro:property name="base_len" value="0.4"/>
-  <xacro:property name="base_height" value="0.12"/>
+  <xacro:property name="base_width" value="0.4"/>
+  <xacro:property name="base_len" value="0.6"/>
+  <xacro:property name="base_height" value="0.2"/>
   <xacro:property name="wheel_radius" value="0.085"/>
   <xacro:property name="base_wheel_gap" value="0.02"/>
   <xacro:property name="wheel_separation" value="0.31"/>
@@ -53,7 +53,7 @@
   <joint name="dummy_joint" type="fixed">
      <parent link="dummy"/>
      <child link="base_footprint"/>
-     </joint>
+  </joint>
 
   <link name="base_link">
     <xacro:box_inertia m="1" w="${base_len}" h="${base_width}" d="0.01"/>
@@ -153,7 +153,7 @@
   <joint name="lidar_joint" type="fixed">
     <parent link="base_link" />
     <child link="lidar" />
-    <origin xyz="0.0 0.0 0.12" rpy="0 0 3.14159" />
+    <origin xyz="0.0 0.0 0.40" rpy="0 0 3.14159" />
   </joint>
   <link name="lidar">
     <visual>
