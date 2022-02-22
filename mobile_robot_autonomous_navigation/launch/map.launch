@@ -8,7 +8,6 @@
   <node pkg="tf" type="static_transform_publisher" name="base_laser_broadcaster" args="0 0.06 0.02 0 0 0 base_link laser 100" />
   <node pkg="tf" type="static_transform_publisher" name="imu_broadcaster" args="0 0.06 0.02 0 0 0 base_link imu 100" />
   <node pkg="tf" type="static_transform_publisher" name="base_link_broadcaster" args="0 0 0.09 0 0 0 base_footprint base_link 100" />
-  <node pkg="tf" type="static_transform_publisher" name="dummy_broadcaster" args="0 0 0 0 0 0 base_link dummy 100" />
 
   <!-- odom to base_footprint transform will be provided by the robot_pose_ekf node -->
   <!-- map to odom will be provided by the AMCL -->
@@ -60,21 +59,6 @@
     <param name="debug" value="false"/>
     <param name="self_diagnose" value="false"/>
   </node>
-
-  <!-- <node pkg="amcl" type="amcl" name="amcl" output="screen">
-        <remap from="scan" to="scan"/>
-        <param name="odom_frame_id" value="odom"/>
-        <param name="odom_model_type" value="diff-corrected"/>
-        <param name="base_frame_id" value="base_link"/>
-        <param name="update_min_d" value="0.1"/>
-        <param name="update_min_a" value="0.2"/>
-        <param name="min_particles" value="500"/>
-        <param name="global_frame_id" value="map"/>
-        <param name="tf_broadcast" value="true" />
-        <param name="initial_pose_x" value="0.0"/>
-        <param name="initial_pose_y" value="0.0"/>
-        <param name="initial_pose_a" value="0.0"/>
-    </node> -->
 
  <!-- Hector SLAM -->
   <arg name="geotiff_map_file_path" default="$(find hector_geotiff)/maps"/>
