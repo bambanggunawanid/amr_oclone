@@ -2,6 +2,7 @@
 <launch>
   <!-- Desclare launch rviz first -->
   <arg name="use_rviz" default="true"/>
+  <param name="/use_sim_time" value="false"/>
 
   <!-- Static transformation for TF -->
   <node pkg="tf" type="static_transform_publisher" name="base_laser_broadcaster" args="0 0.06 0.02 0 0 0 base_link laser 100" />
@@ -19,9 +20,6 @@
   <!-- Run RPLIDAR and IMU driver launch -->
   <include file="$(find rplidar_ros)/launch/rplidar.launch" />
   <include file="$(find mpu6050_driver)/launch/mpu6050_driver.launch" />
-
-  <!-- Desclare map file -->
-  <arg name="map_file" default="$(find mobile_robot_autonomous_navigation)/maps/tesaja.yaml"/>
 
   <!-- Robot model -->
   <arg name="model" default="$(find mobile_robot_autonomous_navigation)/urdf/mobile_robot_v2.xacro"/>
@@ -43,9 +41,7 @@
   </node>
 
   <!-- Rviz config param declare -->
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find mobile_robot_autonomous_navigation)/config/nav_config.rviz"/>
-
-  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" respawn="true" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find mobile_robot_autonomous_navigation)/config/mapping_config.rviz"/>
 
   <!-- Extended Kalman Filter from robot_pose_ekf Node-->
   <!-- Subscribe: /odom, /imu_data, /vo -->
@@ -65,7 +61,7 @@
     <param name="self_diagnose" value="false"/>
   </node>
 
-  <node pkg="amcl" type="amcl" name="amcl" output="screen">
+  <!-- <node pkg="amcl" type="amcl" name="amcl" output="screen">
         <remap from="scan" to="scan"/>
         <param name="odom_frame_id" value="odom"/>
         <param name="odom_model_type" value="diff-corrected"/>
@@ -78,15 +74,19 @@
         <param name="initial_pose_x" value="0.0"/>
         <param name="initial_pose_y" value="0.0"/>
         <param name="initial_pose_a" value="0.0"/>
-    </node>
+    </node> -->
 
-  <!-- Add AMCL example for differential drive robots for Localization -->
-  <!-- Subscribe: /scan, /tf, /initialpose, /map -->
-  <!-- Publish: /amcl_pose, /particlecloud, /tf -->
-  <!-- <include file="$(find amcl)/examples/amcl_diff.launch"/> -->
+ <!-- Hector SLAM -->
+  <arg name="geotiff_map_file_path" default="$(find hector_geotiff)/maps"/>
+  <include file="$(find hector_mapping)/launch/mapping_default.launch"/>
 
-  <!-- <include file="$(find mobile_robot_autonomous_navigation)/launch/amcl.launch" /> -->
-  <include file="$(find mobile_robot_autonomous_navigation)/launch/move_base.launch" />
-
+  <include file="$(find hector_geotiff_launch)/launch/geotiff_mapper.launch">
+    <arg name="trajectory_source_frame_name" value="scanmatcher_frame"/>
+    <arg name="map_file_path" value="$(arg geotiff_map_file_path)"/>
+  </include>
+  <!-- Rqt Robot Steering -->
+  <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
+		<remap from="/cmd_vel" to="/hoverboard_velocity_controller/cmd_vel"/>
+  </node>
 
 </launch>
