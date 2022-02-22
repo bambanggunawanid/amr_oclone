@@ -8,12 +8,12 @@
   <include file="$(find rplidar_ros)/launch/rplidar.launch" />
 
   <!-- Static transformation for TF -->
-  <node pkg="tf" type="static_transform_publisher" name="base_laser_broadcaster" args="0 0.06 0.02 0 0 0 base_link laser 100" />
+  <node pkg="tf" type="static_transform_publisher" name="base_laser_broadcaster" args="0 0.06 0.1 0 0 0 base_link laser 100" />
   <node pkg="tf" type="static_transform_publisher" name="dummy_broadcaster" args="0 0 0 0 0 0 base_link dummy 100" />
   <node pkg="tf" type="static_transform_publisher" name="imu_broadcaster" args="0 0.06 0.02 0 0 0 base_link imu 100" />
   <node pkg="tf" type="static_transform_publisher" name="base_link_broadcaster" args="0 0 0.09 0 0 0 base_footprint base_link 100" />
-  <!-- map to odom will be provided by the AMCL -->
-  <node pkg="tf" type="static_transform_publisher" name="map_to_odom" args="0 0 0 0 0 0 map scanmatch_odom 100" />
+
+  <!-- <node pkg="tf" type="static_transform_publisher" name="map_to_odom" args="0 0 0 0 0 0 map scanmatch_odom 100" /> -->
   <!-- <node pkg="tf" type="static_transform_publisher" name="map_to_nav_broadcaster" args="0 0 0 0 0 0 map nav 50"/> -->
 
   <!-- Robot model -->

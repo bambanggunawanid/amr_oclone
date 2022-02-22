@@ -58,5 +58,5 @@
   <!-- <node pkg="tf" type="static_transform_publisher" name="base_to_laser_broadcaster" args="0 0 0 0 0 0 base_link laser 100"/> -->
   <!-- <node pkg="tf" type="static_transform_publisher" name="map_to_nav_broadcaster" args="0 0 0 0 0 0 map nav 50"/> -->
 
-  <!-- <node pkg="tf" type="static_transform_publisher" name="map_to_odom" args="0 0 0 0 0 0 map odom_combined 100" /> -->
+  <node pkg="tf" type="static_transform_publisher" name="scanfram_to_odomcombine" args="0 0 0 0 0 0 scanmatcher_frame odom_combined 100" />
 </launch>
