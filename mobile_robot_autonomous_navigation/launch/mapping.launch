@@ -6,9 +6,9 @@
   <rosparam file="$(find mobile_robot_autonomous_navigation)/config/controllers_hoverboard.yaml" command="load"/>
   <rosparam file="$(find mobile_robot_autonomous_navigation)/config/joint_limits.yaml" command="load"/>
 
-  <arg name="model" default="$(find mobile_robot_autonomous_navigation)/urdf/mobile_robot.urdf.xacro"/>
+  <arg name="model" default="$(find mobile_robot_autonomous_navigation)/urdf/mobile_robot_v2.xacro"/>
 
-  <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
+  <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
 
   <node name="hoverboard_driver" pkg="hoverboard_driver" type="hoverboard_driver" output="screen">
     <remap from="/hoverboard_velocity_controller/cmd_vel" to="/cmd_vel"/>
