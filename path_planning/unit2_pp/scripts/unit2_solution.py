@@ -1,14 +1,4 @@
 #! /usr/bin/env python
-
-"""
-Dijkstra's algorithm path planning exercise solution
-Author: Roberto Zegers R.
-Copyright: Copyright (c) 2020, Roberto Zegers R.
-License: BSD-3-Clause
-Date: Nov 30, 2020
-Usage: roslaunch unit2_pp unit2_solution.launch
-"""
-
 import rospy
 
 def find_neighbors(index, width, height, costmap, orthogonal_step_cost):
@@ -75,7 +65,7 @@ def find_neighbors(index, width, height, costmap, orthogonal_step_cost):
 
 
 def dijkstra(start_index, goal_index, width, height, costmap, resolution, origin, grid_viz):
-  ''' 
+  '''
   Performs Dijkstra's shortes path algorithm search on a costmap with a given start and goal node
   '''
 
@@ -106,7 +96,8 @@ def dijkstra(start_index, goal_index, width, height, costmap, resolution, origin
   while open_list:
 
     # sort open_list according to the lowest 'g_cost' value (second element of each sublist)
-    open_list.sort(key = lambda x: x[1]) 
+    open_list.sort(key = lambda x: x[1])
+
     # extract the first element (the one with the lowest 'g_cost' value)
     current_node = open_list.pop(0)[0]
 
@@ -180,4 +171,3 @@ def dijkstra(start_index, goal_index, width, height, costmap, resolution, origin
   rospy.loginfo('Dijkstra: Done reconstructing path')
 
   return shortest_path
-
