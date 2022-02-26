@@ -9,7 +9,6 @@
   <node pkg="tf" type="static_transform_publisher" name="base_link_broadcaster" args="0 0 0.09 0 0 0 base_footprint base_link 100" />
   <node pkg="tf" type="static_transform_publisher" name="dummy_broadcaster" args="0 0 0 0 0 0 base_link dummy 100" />
 
-  <!-- odom to base_footprint transform will be provided by the robot_pose_ekf node -->
   <!-- map to odom will be provided by the AMCL -->
   <node pkg="tf" type="static_transform_publisher" name="map_to_odom" args="0 0 0 0 0 0 map odom_combined 100" />
 
@@ -25,7 +24,6 @@
 
   <!-- Robot model -->
   <arg name="model" default="$(find mobile_robot_autonomous_navigation)/urdf/mobile_robot_v2.xacro"/>
-  <!-- <arg name="model" default="$(find mobile_robot_autonomous_navigation)/urdf/mobile_robot_v2.xacro"/> -->
   <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
   <rosparam file="$(find mobile_robot_autonomous_navigation)/config/joint_limits.yaml" command="load"/>
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
@@ -43,7 +41,7 @@
   </node>
 
   <!-- Rviz config param declare -->
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find mobile_robot_autonomous_navigation)/config/nav_config.rviz"/>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find mobile_robot_autonomous_navigation)/rviz/nav_config.rviz"/>
 
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" respawn="true" />
 
@@ -80,12 +78,13 @@
         <param name="initial_pose_a" value="0.0"/>
     </node>
 
+  <!-- Start service server that responds with a plan for global path planning -->
+  <node pkg="unit2_pp" name="dijkstra_exercise" type="unit2_solution_server.py" output="screen"/>
+
   <!-- Add AMCL example for differential drive robots for Localization -->
   <!-- Subscribe: /scan, /tf, /initialpose, /map -->
   <!-- Publish: /amcl_pose, /particlecloud, /tf -->
   <!-- <include file="$(find amcl)/examples/amcl_diff.launch"/> -->
-
-  <!-- <include file="$(find mobile_robot_autonomous_navigation)/launch/amcl.launch" /> -->
   <include file="$(find mobile_robot_autonomous_navigation)/launch/move_base.launch" />
 
 
