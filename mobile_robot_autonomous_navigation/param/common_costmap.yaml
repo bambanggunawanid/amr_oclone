@@ -1,11 +1,5 @@
 footprint: [[-0.12, -0.12], [-0.12, 0.12], [0.12, 0.12], [0.12, -0.12]]
-footprint_padding: 0.01
-
-# The static map created using SLAM is being published to this topic
-map_topic: /map
-
-# Global reference
-global_frame: map
+footprint_padding: 0.05
 
 robot_base_frame: base_link
 update_frequency: 2
@@ -14,8 +8,8 @@ transform_tolerance: 0.5
 
 resolution: 0.05
 
-obstacle_range: 5.5
-raytrace_range: 6.0
+obstacle_range: 3.0
+raytrace_range: 4.0
 
 #layer definitions
 static:
