@@ -135,14 +135,19 @@ def dijkstra(start_index, goal_index, width, height, costmap, resolution, origin
       # CASE 1: neighbor already in open_list
       if in_open_list:
         if g_cost < g_costs[neighbor_index]:
+          print("updated")
           # Update the node's g_cost inside g_costs
           g_costs[neighbor_index] = g_cost
           parents[neighbor_index] = current_node
           # Update the node's g_cost inside open_list
           open_list[idx] = [neighbor_index, g_cost]
+          print("neighbor_index = %s", neighbor_index)
+          print("g_costs[neighbor_index] = %s", g_costs[neighbor_index])
+          print("parents[neighbor_index] = %s", parents[neighbor_index])
 
       # CASE 2: neighbor not in open_list
       else:
+        print("not updated")
         # Set the node's g_cost inside g_costs
         g_costs[neighbor_index] = g_cost
         parents[neighbor_index] = current_node
