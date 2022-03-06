@@ -21,14 +21,14 @@
 
 
   <!-- Robot model -->
-  <arg name="model" default="$(find mobile_robot_autonomous_navigation)/urdf/mobile_robot_v2.xacro"/>
+  <arg name="model" default="$(find autonomous_mobile_robot_navigation)/urdf/mobile_robot_v2.xacro"/>
   <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
-  <rosparam file="$(find mobile_robot_autonomous_navigation)/config/joint_limits.yaml" command="load"/>
+  <rosparam file="$(find autonomous_mobile_robot_navigation)/config/joint_limits.yaml" command="load"/>
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
 
   <!-- Hoverboard Driver Setup Parameter -->
-  <rosparam file="$(find mobile_robot_autonomous_navigation)/config/hardware.yaml" command="load"/>
-  <rosparam file="$(find mobile_robot_autonomous_navigation)/config/controllers_hoverboard.yaml" command="load"/>
+  <rosparam file="$(find autonomous_mobile_robot_navigation)/config/hardware.yaml" command="load"/>
+  <rosparam file="$(find autonomous_mobile_robot_navigation)/config/controllers_hoverboard.yaml" command="load"/>
   <node name="hoverboard_driver" pkg="hoverboard_driver" type="hoverboard_driver" output="screen">
     <remap from="/hoverboard_velocity_controller/cmd_vel" to="/cmd_vel"/>
   </node>
@@ -38,10 +38,10 @@
   <!-- Rviz config param declare -->
   <!-- Subscribe:  -->
   <!-- Publish:  -->
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find mobile_robot_autonomous_navigation)/rviz/nav_config.rviz"/>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find autonomous_mobile_robot_navigation)/rviz/nav_config.rviz"/>
 
   <!-- Desclare map file -->
-  <arg name="map_file" default="$(find mobile_robot_autonomous_navigation)/maps/tesaja.yaml"/>
+  <arg name="map_file" default="$(find autonomous_mobile_robot_navigation)/maps/tesaja.yaml"/>
 
   <!-- Map server -->
   <!-- Subscribe: /map -->
@@ -89,6 +89,6 @@
   <node pkg="unit2_pp" name="dijkstra_exercise" type="unit2_solution_server.py" output="screen"/>
 
   <!-- Import move base -->
-  <include file="$(find mobile_robot_autonomous_navigation)/launch/move_base.launch" />
+  <include file="$(find autonomous_mobile_robot_navigation)/launch/move_base.launch" />
 
 </launch>

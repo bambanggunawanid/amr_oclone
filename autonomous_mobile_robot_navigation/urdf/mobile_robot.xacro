@@ -46,19 +46,19 @@
     <visual>
       <origin rpy="0 0 0" xyz="0.03 0 -0.026"/>
       <geometry>
-        <mesh filename="package://mobile_robot_autonomous_navigation/stl/Chasis.stl" scale="0.001 0.001 0.001"/> 
+        <mesh filename="package://autonomous_mobile_robot_navigation/stl/Chasis.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0.03 0 -0.026"  />
       <geometry>
-        <mesh filename="package://mobile_robot_autonomous_navigation/stl/Chasis.stl" scale="0.001 0.001 0.001" />
+        <mesh filename="package://autonomous_mobile_robot_navigation/stl/Chasis.stl" scale="0.001 0.001 0.001" />
       </geometry>
     </collision>
-    </link>   
-    
-    
+    </link>
+
+
     <joint name="right_wheel_joint" type="continuous">
         <origin xyz="-0.08 -0.06 0.015" rpy="0 0 0" />
         <parent link="base_plate" />
@@ -70,18 +70,18 @@
     <visual>
       <origin rpy="0 0 0" xyz="0.11 0.059 -0.04"/>
       <geometry>
-        <mesh filename="package://mobile_robot_autonomous_navigation/stl/Wheel.stl" scale="0.001 0.001 0.001"/> 
+        <mesh filename="package://autonomous_mobile_robot_navigation/stl/Wheel.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="black"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0.11 0.059 -0.04"/>
       <geometry>
-        <mesh filename="package://mobile_robot_autonomous_navigation/stl/Wheel.stl" scale="0.001 0.001 0.001" />
+        <mesh filename="package://autonomous_mobile_robot_navigation/stl/Wheel.stl" scale="0.001 0.001 0.001" />
       </geometry>
     </collision>
-    </link>   
-    
+    </link>
+
     <joint name="left_wheel_joint" type="continuous">
         <origin xyz="0.08 -0.06 0.015" rpy="0 0 0" />
         <parent link="base_plate" />
@@ -93,18 +93,18 @@
     <visual>
       <origin rpy="0 0 0" xyz="0.133 0.059 -0.04"/>
       <geometry>
-        <mesh filename="package://mobile_robot_autonomous_navigation/stl/Wheel.stl" scale="0.001 0.001 0.001"/> 
+        <mesh filename="package://autonomous_mobile_robot_navigation/stl/Wheel.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="black"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0.133 0.059 -0.04"/>
       <geometry>
-        <mesh filename="package://mobile_robot_autonomous_navigation/stl/Wheel.stl" scale="0.001 0.001 0.001" />
+        <mesh filename="package://autonomous_mobile_robot_navigation/stl/Wheel.stl" scale="0.001 0.001 0.001" />
       </geometry>
     </collision>
-    </link>   
-    
+    </link>
+
     <joint name="laser_joint" type="fixed">
         <origin xyz="0 0.040 0.090" rpy="0 0 1.5708" />
         <parent link="base_plate" />
@@ -115,16 +115,16 @@
     <visual>
       <origin rpy="0 0 -1.5708" xyz="0.084 -0.242 -0.098"/>
       <geometry>
-        <mesh filename="package://mobile_robot_autonomous_navigation/stl/RpLidar.stl" scale="0.001 0.001 0.001"/> 
+        <mesh filename="package://autonomous_mobile_robot_navigation/stl/RpLidar.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="blue"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0.242 0.084 -0.098"  />
       <geometry>
-        <mesh filename="package://mobile_robot_autonomous_navigation/stl/RpLidar.stl" scale="0.001 0.001 0.001" />
+        <mesh filename="package://autonomous_mobile_robot_navigation/stl/RpLidar.stl" scale="0.001 0.001 0.001" />
       </geometry>
     </collision>
-    </link>  
-    
+    </link>
+
 </robot>

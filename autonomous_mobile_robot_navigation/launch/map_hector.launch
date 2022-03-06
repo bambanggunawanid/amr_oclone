@@ -17,15 +17,15 @@
   <!-- <node pkg="tf" type="static_transform_publisher" name="map_to_nav_broadcaster" args="0 0 0 0 0 0 map nav 50"/> -->
 
   <!-- Robot model -->
-  <arg name="model" default="$(find mobile_robot_autonomous_navigation)/urdf/mobile_robot_v2.xacro"/>
+  <arg name="model" default="$(find autonomous_mobile_robot_navigation)/urdf/mobile_robot_v2.xacro"/>
   <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
-  <rosparam file="$(find mobile_robot_autonomous_navigation)/config/joint_limits.yaml" command="load"/>
+  <rosparam file="$(find autonomous_mobile_robot_navigation)/config/joint_limits.yaml" command="load"/>
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
 
   <!-- <remap from="odom" to="/hoverboard_velocity_controller/odom" />
   <remap from="imu" to="/imu/data" />
   <node pkg="robot_pose_ekf" type="robot_pose_ekf" name="robot_pose_ekf">
-     <rosparam file="$(find mobile_robot_autonomous_navigation)/config/ekf_localization.yaml" command="load"/>
+     <rosparam file="$(find autonomous_mobile_robot_navigation)/config/ekf_localization.yaml" command="load"/>
   </node> -->
 
   <!-- Extended Kalman Filter from robot_pose_ekf Node-->
@@ -47,7 +47,7 @@
   </node>
 
   <!-- Rviz config param declare -->
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find mobile_robot_autonomous_navigation)/config/mapping_config.rviz"/>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find autonomous_mobile_robot_navigation)/config/mapping_config.rviz"/>
 
   <!-- Hector SLAM -->
   <arg name="geotiff_map_file_path" default="$(find hector_geotiff)/maps"/>
