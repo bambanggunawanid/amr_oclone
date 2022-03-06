@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="mobile_robot">
 
-  <xacro:property name="base_width" value="0.4"/>
-  <xacro:property name="base_len" value="0.6"/>
-  <xacro:property name="base_height" value="0.2"/>
+  <xacro:property name="base_width" value="0.6"/>
+  <xacro:property name="base_len" value="0.8"/>
+  <xacro:property name="base_height" value="0.15"/>
   <xacro:property name="wheel_radius" value="0.085"/>
   <xacro:property name="base_wheel_gap" value="0.02"/>
   <xacro:property name="wheel_separation" value="0.31"/>
-  <xacro:property name="wheel_joint_offset" value="-0.107"/>
-  <xacro:property name="caster_wheel_radius" value="0.0375"/>
-  <xacro:property name="caster_wheel_joint_offset" value="0.12"/>
+  <xacro:property name="wheel_joint_offset" value="-0.22"/>
+  <xacro:property name="caster_wheel_radius" value="0.0381"/>
+  <xacro:property name="caster_wheel_joint_offset" value="0.30"/>
 
   <xacro:include filename="$(find autonomous_mobile_robot_navigation)/urdf/mobile_robot_v2_gazebo_plugins.xacro"/>
 
@@ -39,20 +39,21 @@
     </inertial>
   </xacro:macro>
 
-  <link name="dummy"/>
   <link name="base_footprint">
     <xacro:box_inertia m="8" w="0.001" h="0.001" d="0.001"/>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <material name="white"/>
-        <geometry>
-            <box size="0.001 0.001 0.001" />
-        </geometry>
+      <geometry>
+        <box size="0.001 0.001 0.001" />
+      </geometry>
     </visual>
   </link>
+
+  <link name="dummy"/>
   <joint name="dummy_joint" type="fixed">
-     <parent link="dummy"/>
-     <child link="base_footprint"/>
+    <parent link="dummy"/>
+    <child link="base_footprint"/>
   </joint>
 
   <link name="base_link">
@@ -86,7 +87,7 @@
   <xacro:macro name="wheel" params="prefix reflect">
     <link name="${prefix}_wheel">
       <visual>
-	<material name="darkgray"/>
+        <material name="darkgray"/>
         <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
         <geometry>
           <cylinder radius="${wheel_radius}" length="0.02"/>
@@ -119,9 +120,9 @@
     </inertial>
   </xacro:macro>
 
-   <link name="caster_wheel">
-     <visual>
-       <material name="darkgray"/>
+  <link name="caster_wheel">
+    <visual>
+      <material name="darkgray"/>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
         <sphere radius="${caster_wheel_radius}"/>
@@ -146,21 +147,30 @@
   <joint name="imu_joint" type="fixed">
     <parent link="base_link" />
     <child link="imu" />
-    <origin xyz="0.16 -0.065 0.035" rpy="0 0 0" />
+    <origin xyz="0.32 0.0 0.08" rpy="0 0 0" />
   </joint>
-  <link name="imu" />
-
-  <joint name="lidar_joint" type="fixed">
-    <parent link="base_link" />
-    <child link="lidar" />
-    <origin xyz="0.0 0.0 0.40" rpy="0 0 3.14159" />
-  </joint>
-  <link name="lidar">
+  <link name="imu">
     <visual>
       <material name="blue" />
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <cylinder radius="0.032" length="0.02"/>
+        <box size="0.04 0.02 0.01"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="lidar_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="lidar" />
+    <origin xyz="0.40 0.0 0.40" rpy="0 0 3.14159" />
+  </joint>
+  <link name="lidar">
+    <visual>
+      <material name="black" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <!-- <cylinder radius="0.05" length="0.03"/> -->
+        <mesh filename="package://autonomous_mobile_robot_navigation/stl/RpLidar.stl" scale="0.1 0.1 0.1" />
       </geometry>
     </visual>
   </link>

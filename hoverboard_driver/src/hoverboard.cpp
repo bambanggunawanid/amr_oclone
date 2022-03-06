@@ -34,7 +34,7 @@ Hoverboard::Hoverboard() {
     vel_pub[0]    = nh.advertise<std_msgs::Float64>("hoverboard/left_wheel/velocity", 3);
     vel_pub[1]    = nh.advertise<std_msgs::Float64>("hoverboard/right_wheel/velocity", 3);
     pos_pub[0]    = nh.advertise<std_msgs::Float64>("hoverboard/left_wheel/position", 3);
-    pos_pub[1]    = nh.advertise<std_msgs::Float64>("hoverboard/right_wheel/position", 3);    
+    pos_pub[1]    = nh.advertise<std_msgs::Float64>("hoverboard/right_wheel/position", 3);
     cmd_pub[0]    = nh.advertise<std_msgs::Float64>("hoverboard/left_wheel/cmd", 3);
     cmd_pub[1]    = nh.advertise<std_msgs::Float64>("hoverboard/right_wheel/cmd", 3);
     voltage_pub   = nh.advertise<std_msgs::Float64>("hoverboard/battery_voltage", 3);
@@ -44,7 +44,7 @@ Hoverboard::Hoverboard() {
     std::size_t error = 0;
     error += !rosparam_shortcuts::get("hoverboard_driver", nh, "hoverboard_velocity_controller/wheel_radius", wheel_radius);
     error += !rosparam_shortcuts::get("hoverboard_driver", nh, "hoverboard_velocity_controller/linear/x/max_velocity", max_velocity);
-    error += !rosparam_shortcuts::get("hoverboard_driver", nh, "robaka/direction", direction_correction);
+    error += !rosparam_shortcuts::get("hoverboard_driver", nh, "amr_oclone/direction", direction_correction);
     rosparam_shortcuts::shutdownIfError("hoverboard_driver", error);
 
     if (!rosparam_shortcuts::get("hoverboard_driver", nh, "port", port)) {
@@ -74,7 +74,7 @@ Hoverboard::Hoverboard() {
         ROS_FATAL("Cannot open serial port to hoverboard");
         exit(-1);
     }
-    
+
     // CONFIGURE THE UART -- connecting to the board
     // The flags (defined in /usr/include/termios.h - see http://pubs.opengroup.org/onlinepubs/007908799/xsh/termios.h.html):
     struct termios options;
@@ -88,7 +88,7 @@ Hoverboard::Hoverboard() {
 }
 
 Hoverboard::~Hoverboard() {
-    if (port_fd != -1) 
+    if (port_fd != -1)
         close(port_fd);
 }
 
@@ -229,11 +229,11 @@ void Hoverboard::on_encoder_update (int16_t right, int16_t left) {
     last_wheelcountL = left;
 
     // When the board shuts down and restarts, wheel ticks are reset to zero so the robot can be suddently lost
-    // This section accumulates ticks even if board shuts down and is restarted   
+    // This section accumulates ticks even if board shuts down and is restarted
     static double lastPosL = 0.0, lastPosR = 0.0;
     static double lastPubPosL = 0.0, lastPubPosR = 0.0;
     static bool nodeStartFlag = true;
-    
+
     //IF there has been a pause in receiving data AND the new number of ticks is close to zero, indicates a board restard
     //(the board seems to often report 1-3 ticks on startup instead of zero)
     //reset the last read ticks to the startup values
@@ -257,7 +257,7 @@ void Hoverboard::on_encoder_update (int16_t right, int16_t left) {
     lastPubPosR += posRDiff;
     lastPosL = posL;
     lastPosR = posR;
-    
+
     // Convert position in accumulated ticks to position in radians
     joints[0].pos.data = 2.0*M_PI * lastPubPosL/(double)TICKS_PER_ROTATION;
     joints[1].pos.data = 2.0*M_PI * lastPubPosR/(double)TICKS_PER_ROTATION;
