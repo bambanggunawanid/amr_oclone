@@ -87,7 +87,7 @@ def shortest(v, path):
 import heapq
 
 def dijkstra(aGraph, start, target):
-    print '''Dijkstra's shortest path'''
+    print ('Dijkstra shortest path')
     # Set the distance for the start node to zero
     start.set_distance(0)
 
@@ -114,11 +114,9 @@ def dijkstra(aGraph, start, target):
                 print ("")
                 next.set_distance(new_dist)
                 next.set_previous(current)
-                print 'updated : current = %s next = %s new_dist = %s' \
-                        %(current.get_id(), next.get_id(), next.get_distance())
+                print ('updated : current = %s next = %s new_dist = %s' %(current.get_id(), next.get_id(), next.get_distance()))
             else:
-                print 'not updated : current = %s next = %s new_dist = %s' \
-                        %(current.get_id(), next.get_id(), next.get_distance())
+                print ('not updated : current = %s next = %s new_dist = %s' %(current.get_id(), next.get_id(), next.get_distance()))
 
         # Rebuild heap
         # 1. Pop every item
@@ -149,16 +147,16 @@ if __name__ == '__main__':
     g.add_edge('d', 'e', 6)
     g.add_edge('e', 'f', 9)
 
-    print 'Graph data:'
+    print ('Graph data:')
     for v in g:
         for w in v.get_connections():
             vid = v.get_id()
             wid = w.get_id()
-            print '( %s , %s, %3d)'  % ( vid, wid, v.get_weight(w))
+            print ('( %s , %s, %3d)'  % ( vid, wid, v.get_weight(w)))
 
     dijkstra(g, g.get_vertex('a'), g.get_vertex('e'))
 
     target = g.get_vertex('e')
     path = [target.get_id()]
     shortest(target, path)
-    print 'The shortest path : %s' %(path[::-1])
+    print ('The shortest path : %s' %(path[::-1]))
