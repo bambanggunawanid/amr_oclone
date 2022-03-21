@@ -1,14 +1,4 @@
 #! /usr/bin/env python
-
-"""
-Dijkstra's algorithm path planning exercise solution
-Author: Roberto Zegers R.
-Copyright: Copyright (c) 2020, Roberto Zegers R.
-License: BSD-3-Clause
-Date: Nov 30, 2020
-Usage: roslaunch unit2_pp unit2_solution.launch
-"""
-
 import rospy
 
 def find_neighbors(index, width, height, costmap, orthogonal_step_cost):
@@ -75,7 +65,7 @@ def find_neighbors(index, width, height, costmap, orthogonal_step_cost):
 
 
 def dijkstra(start_index, goal_index, width, height, costmap, resolution, origin, grid_viz):
-  ''' 
+  '''
   Performs Dijkstra's shortes path algorithm search on a costmap with a given start and goal node
   '''
 
@@ -106,7 +96,8 @@ def dijkstra(start_index, goal_index, width, height, costmap, resolution, origin
   while open_list:
 
     # sort open_list according to the lowest 'g_cost' value (second element of each sublist)
-    open_list.sort(key = lambda x: x[1]) 
+    open_list.sort(key = lambda x: x[1])
+
     # extract the first element (the one with the lowest 'g_cost' value)
     current_node = open_list.pop(0)[0]
 
@@ -144,14 +135,19 @@ def dijkstra(start_index, goal_index, width, height, costmap, resolution, origin
       # CASE 1: neighbor already in open_list
       if in_open_list:
         if g_cost < g_costs[neighbor_index]:
+          print("updated")
           # Update the node's g_cost inside g_costs
           g_costs[neighbor_index] = g_cost
           parents[neighbor_index] = current_node
           # Update the node's g_cost inside open_list
           open_list[idx] = [neighbor_index, g_cost]
+          print("neighbor_index = %s", neighbor_index)
+          print("g_costs[neighbor_index] = %s", g_costs[neighbor_index])
+          print("parents[neighbor_index] = %s", parents[neighbor_index])
 
       # CASE 2: neighbor not in open_list
       else:
+        print("not updated")
         # Set the node's g_cost inside g_costs
         g_costs[neighbor_index] = g_cost
         parents[neighbor_index] = current_node
@@ -180,4 +176,3 @@ def dijkstra(start_index, goal_index, width, height, costmap, resolution, origin
   rospy.loginfo('Dijkstra: Done reconstructing path')
 
   return shortest_path
-

@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<launch>
-  <!-- Desclare launch rviz first -->
-  <arg name="use_rviz" default="true"/>
-
-  <!-- Rviz config param declare -->
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find mobile_robot_autonomous_navigation)/config/nav_config.rviz"/>
-
-</launch>

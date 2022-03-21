@@ -1,0 +1,27 @@
+footprint: [[-0.12, -0.12], [-0.12, 0.12], [0.12, 0.12], [0.12, -0.12]]
+footprint_padding: 0.05
+
+robot_base_frame: base_link
+update_frequency: 2
+publish_frequency: 1
+transform_tolerance: 1
+
+resolution: 0.5
+
+obstacle_range: 3.0
+raytrace_range: 4.0
+
+#layer definitions
+static:
+    map_topic: /map
+    subscribe_to_updates: true
+
+obstacles_laser:
+    observation_sources: laser
+    laser: {data_type: LaserScan, clearing: true, marking: true, topic: scan, inf_is_valid: true}
+
+inflation_g:
+    inflation_radius: 0.06
+
+inflation_l:
+    inflation_radius: 0.03
