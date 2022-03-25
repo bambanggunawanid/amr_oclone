@@ -37,18 +37,17 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES srv_client_plugin
-  CATKIN_DEPENDS 
+  CATKIN_DEPENDS
     base_local_planner
     costmap_2d
-    geometry_msgs 
-    nav_core 
-    nav_msgs 
-    pluginlib 
-    roscpp 
+    geometry_msgs
+    nav_core
+    nav_msgs
+    pluginlib
+    roscpp
     rospy
     tf2
     tf2_ros
-  DEPENDS system_lib
 )
 
 ###########
@@ -135,4 +134,3 @@ install(FILES
     scp_plugin.xml
     DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
-

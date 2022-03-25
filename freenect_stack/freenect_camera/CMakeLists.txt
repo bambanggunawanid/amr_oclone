@@ -52,7 +52,6 @@ target_link_libraries(freenect_nodelet
 add_dependencies(freenect_nodelet ${PROJECT_NAME}_gencfg)
 
 catkin_package(DEPENDS
-               libfreenect
                CATKIN_DEPENDS
                camera_info_manager
                diagnostic_updater

@@ -18,14 +18,14 @@ class Hoverboard : public hardware_interface::RobotHW {
 public:
     Hoverboard();
     ~Hoverboard();
-    
+
     void read();
     void write(const ros::Time& time, const ros::Duration& period);
     void tick();
  private:
     void protocol_recv (char c);
     void on_encoder_update (int16_t right, int16_t left);
- 
+
     hardware_interface::JointStateInterface joint_state_interface;
     hardware_interface::VelocityJointInterface velocity_joint_interface;
 
@@ -40,7 +40,7 @@ public:
     // Publishers
     ros::NodeHandle nh;
     ros::Publisher vel_pub[2];
-    ros::Publisher pos_pub[2];    
+    ros::Publisher pos_pub[2];
     ros::Publisher cmd_pub[2];
     ros::Publisher voltage_pub;
     ros::Publisher temp_pub;

@@ -3,10 +3,7 @@
 
 # Ignore folder
 node_modules
-vscode
 build
 
 # Ignore files related to API keys
 .env
-
-.vscode/*
