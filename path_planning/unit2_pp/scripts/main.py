@@ -4,7 +4,7 @@ import rospy
 from pp_msgs.srv import PathPlanningPlugin, PathPlanningPluginResponse
 from geometry_msgs.msg import Twist
 from gridviz import GridViz
-from unit2_solution import dijkstra
+from dijkstra import dijkstra
 
 def make_plan(req):
   '''

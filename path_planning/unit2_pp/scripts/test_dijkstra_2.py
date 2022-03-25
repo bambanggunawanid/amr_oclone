@@ -64,7 +64,7 @@ def find_neighbors(index, width, height, costmap, orthogonal_step_cost):
   return neighbors
 
 
-def dijkstra(start_index, goal_index, width, height, costmap, resolution, origin, grid_viz):
+def dijkstra(start_index, goal_index, width, height, costmap, resolution, origin):
   '''
   Performs Dijkstra's shortes path algorithm search on a costmap with a given start and goal node
   '''
@@ -104,9 +104,6 @@ def dijkstra(start_index, goal_index, width, height, costmap, resolution, origin
     # Close current_node to prevent from visting it again
     closed_list.add(current_node)
 
-    # Optional: visualize closed nodes
-    grid_viz.set_color(current_node,"pale yellow")
-
     # If current_node is the goal, exit the main loop
     if current_node == goal_index:
       path_found = True
@@ -135,32 +132,24 @@ def dijkstra(start_index, goal_index, width, height, costmap, resolution, origin
       # CASE 1: neighbor already in open_list
       if in_open_list:
         if g_cost < g_costs[neighbor_index]:
-          print("updated")
           # Update the node's g_cost inside g_costs
           g_costs[neighbor_index] = g_cost
           parents[neighbor_index] = current_node
           # Update the node's g_cost inside open_list
           open_list[idx] = [neighbor_index, g_cost]
-          print("neighbor_index = %s", neighbor_index)
-          print("g_costs[neighbor_index] = %s", g_costs[neighbor_index])
-          print("parents[neighbor_index] = %s", parents[neighbor_index])
 
       # CASE 2: neighbor not in open_list
       else:
-        print("not updated")
         # Set the node's g_cost inside g_costs
         g_costs[neighbor_index] = g_cost
         parents[neighbor_index] = current_node
         # Add neighbor to open_list
         open_list.append([neighbor_index, g_cost])
 
-        # Optional: visualize frontier
-        grid_viz.set_color(neighbor_index,'orange')
-
-  rospy.loginfo('Dijkstra: Done traversing nodes in open_list')
+  rospy.print('Dijkstra: Done traversing nodes in open_list')
 
   if not path_found:
-    rospy.logwarn('Dijkstra: No path found!')
+    rospy.print('Dijkstra: No path found!')
     return shortest_path
 
   # Reconstruct path by working backwards from target
@@ -173,6 +162,6 @@ def dijkstra(start_index, goal_index, width, height, costmap, resolution, origin
           node = parents[node]
   # reverse list
   shortest_path = shortest_path[::-1]
-  rospy.loginfo('Dijkstra: Done reconstructing path')
+  rospy.print('Dijkstra: Done reconstructing path')
 
   return shortest_path
