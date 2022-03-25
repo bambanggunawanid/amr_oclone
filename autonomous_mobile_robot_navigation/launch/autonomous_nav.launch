@@ -22,9 +22,11 @@
   <!-- Desclare map file -->
   <arg name="map_file" default="$(find mobile_robot_autonomous_navigation)/maps/basemen_g_per4_niceeeee.yaml"/>
 
-  <!-- Robot model -->
+  <!-- Robot model urdf -->
   <arg name="model" default="$(find autonomous_mobile_robot_navigation)/urdf/mobile_robot_v2.xacro"/>
   <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
+
+  <!-- Robot join state -->
   <rosparam file="$(find autonomous_mobile_robot_navigation)/config/joint_limits.yaml" command="load"/>
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
 
