@@ -4,6 +4,8 @@ project(autonomous_mobile_robot_navigation)
 ## Compile as C++11, supported in ROS Kinetic and newer
 add_compile_options(-std=c++14)
 
+set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR})
+
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
@@ -27,9 +29,10 @@ find_package(catkin REQUIRED COMPONENTS
   std_srvs
   tf
   tf2
-  Eigen3
   moveit_ros_planning_interface
 )
+
+find_package(Eigen3 REQUIRED)
 
 catkin_package(
   INCLUDE_DIRS include
@@ -44,7 +47,7 @@ catkin_package(
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}
-  SYSTEM ${EIGEN3_INCLUDE_DIRS}
+  ${EIGEN3_INCLUDE_DIR}
 )
 
 
