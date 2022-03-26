@@ -1,0 +1,45 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "prerun",
+            "type": "shell",
+            "dependsOn": [
+                "build package only"
+            ],
+            "command": "source ../../devel/setup.bash && export ROS_MASTER_URI=http://localhost:11311/ "
+        },
+        {
+            "label": "build all packages",
+            "type": "shell",
+            "command": "cd ~/catkin_ws/ && catkin config --extend /opt/ros/noetic && catkin build -DCMAKE_BUILD_TYPE=Debug -j8",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "build package only",
+            "type": "shell",
+            "command": "cd ~/catkin_ws/ && catkin config --extend /opt/ros/noetic && catkin build ${workspaceFolderBasename} -DCMAKE_BUILD_TYPE=Debug -j8",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "clean",
+            "type": "shell",
+            "command": "cd ~/catkin_ws/ && catkin clean --yes"
+        },
+        {
+            "label": "release",
+            "type": "shell",
+            "command": "sudo checkinstall --install=no catkin build -j4 --cmake--args -DCMAKE_BUILD_TYPE=Release"
+        }
+    ]
+}

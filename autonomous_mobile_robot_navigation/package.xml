@@ -28,7 +28,6 @@
   <depend>map_server</depend>
   <depend>rosparam_shortcuts</depend>
   <depend>hardware_interface</depend>
-  <depend>range_sensor_layer</depend>
   <depend>laser_filters</depend>
   <depend>imu_filter_madgwick</depend>
   <depend>rviz_imu_plugin</depend>
@@ -38,6 +37,7 @@
   <depend>global_planner</depend>
   <depend>twist_mux</depend>
   <depend>nmea_navsat_driver</depend>
+  <depend>moveit_ros_planning_interface</depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>

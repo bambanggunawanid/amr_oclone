@@ -27,6 +27,8 @@ find_package(catkin REQUIRED COMPONENTS
   std_srvs
   tf
   tf2
+  Eigen3
+  moveit_ros_planning_interface
 )
 
 catkin_package(
@@ -42,7 +44,7 @@ catkin_package(
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}
-  # include_directories(include ${catkin_INCLUDE_DIRS} ${Eigen_INCLUDE_DIRS})
+  SYSTEM ${EIGEN3_INCLUDE_DIRS}
 )
 
 
