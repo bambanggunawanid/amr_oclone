@@ -3,7 +3,7 @@
   <name>autonomous_mobile_robot_navigation</name>
   <version>0.0.2</version>
   <description>The AMR Navigation package</description>
-  <maintainer email="bambanggunawan@gmail.com">Bambang Gunawan</maintainer>
+  <maintainer email="bambanggunawan887@gmail.com">Bambang Gunawan</maintainer>
 
   <license>BSD</license>
   <buildtool_depend>catkin</buildtool_depend>
@@ -23,7 +23,6 @@
   <depend>std_srvs</depend>
   <depend>tf</depend>
   <depend>tf2</depend>
-  <depend>cartographer</depend>
   <depend>control_toolbox</depend>
   <depend>map_server</depend>
   <depend>rosparam_shortcuts</depend>
@@ -39,7 +38,7 @@
   <depend>nmea_navsat_driver</depend>
   <depend>moveit_ros_planning_interface</depend>
 
-  <!-- The export tag contains other, unspecified, tags -->
+  <!-- The export tag contains other, unspecified -->
   <export>
   </export>
 </package>

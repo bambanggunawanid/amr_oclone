@@ -2,7 +2,7 @@
 
 <launch>
   <arg name="trajectory_source_frame_name" default="/base_link"/>
-  <arg name="trajectory_update_rate" default="4"/>
+  <arg name="trajectory_update_rate" default="4.0"/>
   <arg name="trajectory_publish_rate" default="0.25"/>
   <arg name="map_file_path" default="$(find hector_geotiff)/maps"/>
   <arg name="map_file_base_name" default="hector_slam_map"/>
@@ -25,4 +25,3 @@
   </node>
 
 </launch>
-

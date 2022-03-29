@@ -42,10 +42,8 @@
 
     <!-- Advertising config -->
     <param name="advertise_map_service" value="true"/>
-
     <param name="scan_subscriber_queue_size" value="$(arg scan_subscriber_queue_size)"/>
     <param name="scan_topic" value="$(arg scan_topic)"/>
-
     <param name="tf_map_scanmatch_transform_frame_name" value="$(arg tf_map_scanmatch_transform_frame_name)" />
   </node>
 

@@ -4,6 +4,9 @@
 # Ignore folder
 node_modules
 build
+.vscode
+vscode
+RoboND-Perception-Project
 
 # Ignore files related to API keys
 .env

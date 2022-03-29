@@ -2,21 +2,30 @@
     "configurations": [
         {
             "browse": {
-                "databaseFilename": "",
-                "limitSymbolsToIncludedHeaders": true
+                "databaseFilename": "${workspaceFolder}/.vscode/browse.vc.db",
+                "limitSymbolsToIncludedHeaders": false
             },
-            "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**",
+                "/home/hazu/catkin_ws/devel/include/**",
                 "/opt/ros/noetic/include/**",
-                "~/catkin_ws/devel/include/**"
+                "/home/hazu/catkin_ws/src/cv_learning/include/**",
+                "/home/hazu/catkin_ws/src/freenect_stack/freenect_camera/include/**",
+                "/home/hazu/catkin_ws/src/hector_slam/hector_geotiff/include/**",
+                "/home/hazu/catkin_ws/src/hector_slam/hector_map_tools/include/**",
+                "/home/hazu/catkin_ws/src/hector_slam/hector_mapping/include/**",
+                "/home/hazu/catkin_ws/src/hector_slam/hector_marker_drawing/include/**",
+                "/home/hazu/catkin_ws/src/mobile_robot_autonomous_navigation/include/**",
+                "/home/hazu/catkin_ws/src/navbot_control/include/**",
+                "/home/hazu/catkin_ws/src/openslam_gmapping/include/**",
+                "/usr/include/**",
+                "${workspaceFolder}/RoboND-Perception-Project/gazebo_grasp_plugin/include"
             ],
-            "defines": [],
-            "compilerPath": "/usr/bin/gcc",
-            "cStandard": "gnu17",
-            "cppStandard": "gnu++14",
+            "name": "ROS",
             "intelliSenseMode": "gcc-x64",
-            "configurationProvider": "ms-vscode.cmake-tools"
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "gnu11",
+            "cppStandard": "c++14",
+            "compileCommands": "${workspaceFolder}/build/compile_commands.json"
         }
     ],
     "version": 4

@@ -3,7 +3,7 @@
 
 cmake_minimum_required(VERSION 3.0.2)
 
-project(Project)
+project(src)
 
 set(CATKIN_TOPLEVEL TRUE)
 
