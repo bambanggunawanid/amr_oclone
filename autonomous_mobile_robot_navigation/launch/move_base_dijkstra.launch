@@ -9,7 +9,7 @@
   <arg name="base_global_planner" default="srv_client_plugin/SrvClientPlugin"/>
 
   <!-- Move base node -->
-  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen" default="$(find autonomous_mobile_robot_navigation)/param/move_base.yaml">
     <!-- Move base parameter -->
     <rosparam file="$(find autonomous_mobile_robot_navigation)/param/costmap_common.yaml" command="load" ns="global_costmap" />
     <rosparam file="$(find autonomous_mobile_robot_navigation)/param/costmap_common.yaml" command="load" ns="local_costmap" />
