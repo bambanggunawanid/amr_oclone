@@ -36,7 +36,7 @@
   </node>
 
   <!-- Steering using rqt -->
-  <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering.py">
+  <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
     <remap from="/cmd_vel" to="/hoverboard_velocity_controller/cmd_vel"/>
   </node>
 
