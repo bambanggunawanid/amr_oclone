@@ -89,6 +89,6 @@
   <node pkg="unit2_pp" name="dijkstra_global_costmap" type="main.py" output="screen"/>
 
   <!-- Import move base -->
-  <include file="$(find autonomous_mobile_robot_navigation)/launch/move_base_dijkstra.launch" />
+  <include file="$(find autonomous_mobile_robot_navigation)/launch/move_base.launch" />
 
 </launch>

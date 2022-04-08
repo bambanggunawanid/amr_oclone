@@ -1,13 +1,13 @@
 hoverboard_joint_publisher:
   type: "joint_state_controller/JointStateController"
   publish_rate: 50
-  left_wheel  : "left_wheel"
-  right_wheel : "right_wheel"
+  left_wheel  : 'left_wheel'
+  right_wheel : 'right_wheel'
 
 hoverboard_velocity_controller:
   type        : "diff_drive_controller/DiffDriveController"
-  left_wheel  : "left_wheel"
-  right_wheel : "right_wheel"
+  left_wheel  : 'left_wheel'
+  right_wheel : 'right_wheel'
   publish_rate: 50.0               # default: 50
   pose_covariance_diagonal : [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
   twist_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
@@ -28,7 +28,7 @@ hoverboard_velocity_controller:
   # Base frame_id
   base_frame_id: base_footprint #default: base_link
   allow_multiple_cmd_vel_publishers: true
-  odom_frame_id: "/odom"
+  odom_frame_id: '/odom'
   enable_odom_tf: false
 
   # Velocity and acceleration limits
@@ -36,7 +36,7 @@ hoverboard_velocity_controller:
   linear:
     x:
       has_velocity_limits    : true
-      max_velocity           : 1.0  # m/s
+      max_velocity           : 2.0  # m/s
       has_acceleration_limits: true
       max_acceleration       : 0.8  # m/s^2
       has_jerk_limits        : false
@@ -44,8 +44,8 @@ hoverboard_velocity_controller:
   angular:
     z:
       has_velocity_limits    : true # was true
-      max_velocity           : 6.28  # rad/s
+      max_velocity           : 3.14  # rad/s
       has_acceleration_limits: true # was true
       max_acceleration       : 3.14  # rad/s^2
-      has_jerk_limits        : true
-      max_jerk               : 3.14  # rad/s^3
+      has_jerk_limits        : false
+      max_jerk               : 0.0  # rad/s^3
