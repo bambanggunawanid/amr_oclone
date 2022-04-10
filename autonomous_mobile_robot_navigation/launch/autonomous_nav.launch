@@ -89,7 +89,7 @@
   </node>
 
   <!-- Start service server that responds with a plan for global path planning -->
-  <node pkg="unit2_pp" name="dijkstra_exercise" type="unit2_solution_server.py" output="screen"/>
+  <node pkg="unit2_pp" name="main" type="main.py" output="screen"/>
 
   <!-- Import move base -->
   <include file="$(find autonomous_mobile_robot_navigation)/launch/move_base_dijkstra.launch" />

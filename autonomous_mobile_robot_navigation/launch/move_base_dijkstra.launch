@@ -10,17 +10,11 @@
 
   <!-- Move base node -->
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen" default="$(find autonomous_mobile_robot_navigation)/param/move_base.yaml">
-    <!-- Move base parameter -->
-    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/costmap_common.yaml" command="load" ns="global_costmap" />
-    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/costmap_common.yaml" command="load" ns="local_costmap" />
-    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/local_costmap.yaml" command="load" ns="local_costmap" />
-    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/global_costmap.yaml" command="load" ns="global_costmap" />
+    <!-- Move base costmap parameter -->
+    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/costmap_common_2.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/costmap_common_2.yaml" command="load" ns="local_costmap" />
 
-    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/costmap_common.yaml" command="load" ns="global_costmap" />
-    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/costmap_common.yaml" command="load" ns="local_costmap" />
-    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/local_costmap.yaml" command="load" />
-    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/global_costmap.yaml" command="load" />
-
+    <!-- Move Base Planner parameter -->
     <rosparam file="$(find autonomous_mobile_robot_navigation)/param/move_base.yaml" command="load" />
     <rosparam file="$(find autonomous_mobile_robot_navigation)/param/global_planner.yaml" command="load" />
 
