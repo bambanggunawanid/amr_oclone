@@ -20,7 +20,7 @@
   <include file="$(find mpu6050_driver)/launch/mpu6050_driver.launch" />
 
   <!-- Desclare map file -->
-  <arg name="map_file" default="$(find mobile_robot_autonomous_navigation)/maps/basemen_g_per4_niceeeee.yaml"/>
+  <arg name="map_file" default="$(find autonomous_mobile_robot_navigation)/maps/basemen_g_per4_niceeeee.yaml"/>
 
   <!-- Robot model urdf -->
   <arg name="model" default="$(find autonomous_mobile_robot_navigation)/urdf/mobile_robot_v2.xacro"/>
@@ -43,9 +43,6 @@
   <!-- Subscribe:  -->
   <!-- Publish:  -->
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find autonomous_mobile_robot_navigation)/rviz/nav_config.rviz"/>
-
-  <!-- Desclare map file -->
-  <arg name="map_file" default="$(find autonomous_mobile_robot_navigation)/maps/tesaja.yaml"/>
 
   <!-- Map server -->
   <!-- Subscribe: /map -->
@@ -89,7 +86,7 @@
   </node>
 
   <!-- Start service server that responds with a plan for global path planning -->
-  <node pkg="unit2_pp" name="main" type="main.py" output="screen"/>
+  <node pkg="unit2_pp" name="dijkstra_global_costmap" type="main.py" output="screen"/>
 
   <!-- Import move base -->
   <include file="$(find autonomous_mobile_robot_navigation)/launch/move_base_dijkstra.launch" />

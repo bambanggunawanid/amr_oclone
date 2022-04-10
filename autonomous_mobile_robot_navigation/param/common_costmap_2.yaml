@@ -70,17 +70,16 @@ global_costmap:
       always_send_full_costmap: true
 
 local_costmap:
-  local_costmap:
-    ros__parameters:
-      update_frequency: 5.0
-      publish_frequency: 2.0
-      global_frame: odom
-      robot_base_frame: base_link
-      use_sim_time: true
-      rolling_window: true
-      width: 20
-      height: 20
-      resolution: 0.05
-      plugins:
-      - {name: obstacles_laser,           type: "costmap_2d::ObstacleLayer"}
-      - {name: inflation_l,                 type: "costmap_2d::InflationLayer"}
+  ros__parameters:
+    update_frequency: 5.0
+    publish_frequency: 2.0
+    global_frame: odom
+    robot_base_frame: base_link
+    use_sim_time: true
+    rolling_window: true
+    width: 20
+    height: 20
+    resolution: 0.05
+    plugins:
+    - {name: obstacles_laser,           type: "costmap_2d::ObstacleLayer"}
+    - {name: inflation_l,                 type: "costmap_2d::InflationLayer"}
