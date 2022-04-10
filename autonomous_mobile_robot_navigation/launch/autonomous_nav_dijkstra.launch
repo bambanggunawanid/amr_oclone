@@ -19,9 +19,6 @@
   <include file="$(find rplidar_ros)/launch/rplidar.launch" />
   <include file="$(find mpu6050_driver)/launch/mpu6050_driver.launch" />
 
-  <!-- Desclare map file -->
-  <arg name="map_file" default="$(find autonomous_mobile_robot_navigation)/maps/basemen_g_per4_niceeeee.yaml"/>
-
   <!-- Robot model urdf -->
   <arg name="model" default="$(find autonomous_mobile_robot_navigation)/urdf/mobile_robot_v2.xacro"/>
   <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
@@ -42,12 +39,14 @@
   <!-- Rviz config param declare -->
   <!-- Subscribe:  -->
   <!-- Publish:  -->
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find autonomous_mobile_robot_navigation)/rviz/nav_config.rviz"/>
+  <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find autonomous_mobile_robot_navigation)/rviz/nav_config.rviz"/> -->
 
   <!-- Map server -->
   <!-- Subscribe: /map -->
   <!-- Publish: /map, /map_metadata -->
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" respawn="true" />
+  <!-- Desclare map file -->
+  <arg name="map_file" default="$(find autonomous_mobile_robot_navigation)/maps/basemen_g_per4_niceeeee.yaml"/>
 
   <!-- Extended Kalman Filter from robot_pose_ekf Node-->
   <!-- Subscribe: /odom, /imu_data, /vo -->
@@ -86,6 +85,6 @@
   </node>
 
   <!-- Import move base -->
-  <include file="$(find autonomous_mobile_robot_navigation)/launch/move_base.launch" />
+  <include file="$(find unit2_pp)/launch/unit2_solution.launch" />
 
 </launch>
