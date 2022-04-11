@@ -6,6 +6,7 @@
 
   <include file="$(find mpu6050_driver)/launch/mpu6050_driver.launch" />
   <include file="$(find rplidar_ros)/launch/rplidar.launch" />
+  <include file="$(find hoverboard_driver)/launch/hoverboard.launch" />
 
   <!-- Static transformation for TF -->
   <node pkg="tf" type="static_transform_publisher" name="base_laser_broadcaster" args="0 0.06 0.1 0 0 0 base_link laser 100" />
@@ -13,8 +14,8 @@
   <node pkg="tf" type="static_transform_publisher" name="imu_broadcaster" args="0 0.06 0.02 0 0 0 base_link imu 100" />
   <node pkg="tf" type="static_transform_publisher" name="base_link_broadcaster" args="0 0 0.09 0 0 0 base_footprint base_link 100" />
 
-  <!-- <node pkg="tf" type="static_transform_publisher" name="map_to_odom" args="0 0 0 0 0 0 map scanmatch_odom 100" /> -->
-  <!-- <node pkg="tf" type="static_transform_publisher" name="map_to_nav_broadcaster" args="0 0 0 0 0 0 map nav 50"/> -->
+  <!-- scanmather to odom will be provided by the Hector Mapping -->
+  <node pkg="tf" type="static_transform_publisher" name="hector_to_odom" args="0 0 0 0 0 0 scanmatcher_frame odom_combined 100" />
 
   <!-- Robot model -->
   <arg name="model" default="$(find autonomous_mobile_robot_navigation)/urdf/mobile_robot_v2.xacro"/>
@@ -51,6 +52,7 @@
 
   <!-- Hector SLAM -->
   <arg name="geotiff_map_file_path" default="$(find hector_geotiff)/maps"/>
+
   <include file="$(find hector_mapping)/launch/mapping_default.launch"/>
 
   <include file="$(find hector_geotiff_launch)/launch/geotiff_mapper.launch">
@@ -58,10 +60,9 @@
     <arg name="map_file_path" value="$(arg geotiff_map_file_path)"/>
   </include>
   <!-- Hoverboard -->
-  <include file="$(find hoverboard_driver)/launch/hoverboard.launch" />
   <!-- Rqt Robot Steering -->
   <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
-		<remap from="/cmd_vel" to="/hoverboard_velocity_controller/cmd_vel"/>
+    <remap from="/cmd_vel" to="/hoverboard_velocity_controller/cmd_vel"/>
   </node>
 
 </launch>

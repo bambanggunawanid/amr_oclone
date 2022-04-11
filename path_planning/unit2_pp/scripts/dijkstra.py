@@ -2,11 +2,6 @@
 import rospy
 
 def find_neighbors(index, width, height, costmap, orthogonal_step_cost):
-  """
-  Identifies neighbor nodes inspecting the 8 adjacent neighbors
-  Checks if neighbor is inside the map boundaries and if is not an obstacle according to a threshold
-  Returns a list with valid neighbour nodes as [index, step_cost] pairs
-  """
   neighbors = []
   # length of diagonal = length of one side by the square root of 2 (1.41421)
   diagonal_step_cost = orthogonal_step_cost * 1.41421

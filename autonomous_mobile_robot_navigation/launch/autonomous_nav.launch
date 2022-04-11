@@ -85,9 +85,6 @@
     <param name="initial_pose_a" value="0.0"/>
   </node>
 
-  <!-- Start service server that responds with a plan for global path planning -->
-  <node pkg="unit2_pp" name="dijkstra_global_costmap" type="main.py" output="screen"/>
-
   <!-- Import move base -->
   <include file="$(find autonomous_mobile_robot_navigation)/launch/move_base.launch" />
 
