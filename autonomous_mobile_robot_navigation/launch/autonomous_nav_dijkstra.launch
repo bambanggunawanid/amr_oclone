@@ -41,12 +41,13 @@
   <!-- Publish:  -->
   <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find autonomous_mobile_robot_navigation)/rviz/nav_config.rviz"/> -->
 
+  <!-- Desclare map file -->
+  <arg name="map_file" default="$(find autonomous_mobile_robot_navigation)/maps/basemen_g_per4_niceeeee.yaml"/>
+
   <!-- Map server -->
   <!-- Subscribe: /map -->
   <!-- Publish: /map, /map_metadata -->
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" respawn="true" />
-  <!-- Desclare map file -->
-  <arg name="map_file" default="$(find autonomous_mobile_robot_navigation)/maps/basemen_g_per4_niceeeee.yaml"/>
 
   <!-- Extended Kalman Filter from robot_pose_ekf Node-->
   <!-- Subscribe: /odom, /imu_data, /vo -->
