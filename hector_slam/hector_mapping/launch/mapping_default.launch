@@ -3,7 +3,7 @@
 <launch>
   <arg name="tf_map_scanmatch_transform_frame_name" default="scanmatcher_frame"/>
   <arg name="base_frame" default="base_link"/>
-  <arg name="odom_frame" default="odom"/>
+  <arg name="odom_frame" default="odom_combined"/>
   <arg name="pub_map_odom_transform" default="false"/>
   <arg name="scan_subscriber_queue_size" default="5"/>
   <arg name="scan_topic" default="scan"/>
@@ -46,6 +46,4 @@
     <param name="scan_topic" value="$(arg scan_topic)"/>
     <param name="tf_map_scanmatch_transform_frame_name" value="$(arg tf_map_scanmatch_transform_frame_name)" />
   </node>
-
-  <!-- <node pkg="tf" type="static_transform_publisher" name="scanmatch_to_odomcombine" args="0 0 0 0 0 0 scanmatcher_frame odom_combined 100" /> -->
 </launch>
