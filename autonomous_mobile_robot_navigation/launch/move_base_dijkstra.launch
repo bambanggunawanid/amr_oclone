@@ -12,8 +12,8 @@
   <!-- Move base node -->
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen" >
     <!-- Move base parameter -->
-    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/common_costmap_2.yaml" command="load" ns="global_costmap" />
-    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/common_costmap_2.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/global_costmap.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/local_costmap.yaml" command="load" ns="local_costmap" />
 
     <!-- Move Base Planner parameter -->
     <rosparam file="$(find autonomous_mobile_robot_navigation)/param/move_base.yaml" command="load" />

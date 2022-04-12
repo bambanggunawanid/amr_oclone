@@ -5,8 +5,8 @@
   <arg name="odom_topic" default="/odom_combined"/>
 
   <!-- Alternative global planners, default is NavfnROS: -->
-  <!-- <arg name="base_global_planner" default="navfn/NavfnROS"/> -->
-  <arg name="base_global_planner" default="srv_client_plugin/SrvClientPlugin"/>
+  <arg name="base_global_planner" default="navfn/NavfnROS"/>
+  <!-- <arg name="base_global_planner" default="srv_client_plugin/SrvClientPlugin"/> -->
   <!-- Alternatif local planners, default is base local planner -->
   <arg name="base_local_planner" default="dwa_local_planner/DWAPlannerROS"/>
 

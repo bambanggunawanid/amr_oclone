@@ -20,7 +20,7 @@
   <include file="$(find mpu6050_driver)/launch/mpu6050_driver.launch" />
 
   <!-- Desclare map file -->
-  <arg name="map_file" default="$(find autonomous_mobile_robot_navigation)/maps/basemen_g_per4_niceeeee.yaml"/>
+  <arg name="map_file" default="$(find autonomous_mobile_robot_navigation)/maps/basemen_g_per4_niceeeee_perfecttoooooo.yaml"/>
 
   <!-- Robot model urdf -->
   <arg name="model" default="$(find autonomous_mobile_robot_navigation)/urdf/mobile_robot_v2.xacro"/>

@@ -19,3 +19,7 @@ catkin_package(
 install(DIRECTORY launch
     DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
+
+#add_executable(floor_segmentation src/floor_segmentation.cpp)
+
+#add_executable(segmentation src/segmentation.cpp)
