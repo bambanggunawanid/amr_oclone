@@ -74,12 +74,25 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        laser:
+        caster_wheel:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
+        dummy:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        imu:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         left_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        lidar:
           Alpha: 1
           Show Axes: false
           Show Trail: false
