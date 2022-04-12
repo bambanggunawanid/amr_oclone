@@ -26,7 +26,7 @@ hoverboard_velocity_controller:
   linear:
     x:
       has_velocity_limits    : true # default false
-      max_velocity           : 1.0  # m/s
+      max_velocity           : 2.0  # m/s
       min_velocity           : -0.5  # m/s
       has_acceleration_limits: true # default false
       max_acceleration       : 0.8  # m/s^2
