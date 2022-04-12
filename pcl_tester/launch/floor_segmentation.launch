@@ -90,5 +90,5 @@
   </node>
 
   <!-- RViz -->
-  <node type="rviz" name="pcl_rviz" pkg="rviz" args="-d $(find pcl_tester)/rviz/floor_segmentation.rviz"/>
+  <!-- <node type="rviz" name="pcl_rviz" pkg="rviz" args="-d $(find pcl_tester)/rviz/floor_segmentation.rviz"/> -->
 </launch>

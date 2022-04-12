@@ -39,7 +39,7 @@
   <!-- Rviz config param declare -->
   <!-- Subscribe:  -->
   <!-- Publish:  -->
-  <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find autonomous_mobile_robot_navigation)/rviz/nav_config.rviz"/> -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find autonomous_mobile_robot_navigation)/rviz/nav_config.rviz"/>
 
   <!-- Desclare map file -->
   <arg name="map_file" default="$(find autonomous_mobile_robot_navigation)/maps/basemen_g_per4_niceeeee.yaml"/>
