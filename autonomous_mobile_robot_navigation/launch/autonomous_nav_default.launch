@@ -7,6 +7,7 @@
     <node pkg="tf" type="static_transform_publisher" name="base_imu_broadcaster" args="0 0.06 0.02 0 0 0 base_link imu 100" />
     <node pkg="tf" type="static_transform_publisher" name="base_dummy_broadcaster" args="0 0 0 0 0 0 base_link dummy 100" />
     <node pkg="tf" type="static_transform_publisher" name="base_caster_broadcaster" args="0 0 0 0 0 0 base_link wheel_caster 100" />
+    <node pkg="tf" type="static_transform_publisher" name="caster_broadcaster" args="0 0 0 0 0 0 base_link caster_wheel 100" />
 
     <!-- Rviz config param declare -->
     <arg name="use_rviz" default="true"/>
@@ -14,12 +15,10 @@
     <!-- Publish:  -->
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find autonomous_mobile_robot_navigation)/rviz/nav_config.rviz"/>
 
-    <!-- Hoverboard usb port -->
-    <param name="port" type="str" value="/dev/ttyHOVER"/>
-
     <!-- Run RPLIDAR and IMU driver launch -->
     <include file="$(find rplidar_ros)/launch/rplidar.launch" />
     <include file="$(find mpu6050_driver)/launch/mpu6050_driver.launch" />
+    <include file="$(find autonomous_mobile_robot_navigation)/launch/hoverboard.launch" />
 
     <!-- Robot model urdf -->
     <arg name="model" default="$(find autonomous_mobile_robot_navigation)/urdf/mobile_robot_v2.xacro"/>
@@ -29,17 +28,8 @@
     <rosparam file="$(find autonomous_mobile_robot_navigation)/config/joint_limits.yaml" command="load"/>
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
 
-    <!-- Hoverboard Driver Setup Parameter -->
-    <rosparam file="$(find autonomous_mobile_robot_navigation)/config/hardware.yaml" command="load"/>
-    <rosparam file="$(find autonomous_mobile_robot_navigation)/config/controllers_hoverboard.yaml" command="load"/>
-    <node name="hoverboard_driver" pkg="hoverboard_driver" type="hoverboard_driver" output="screen">
-        <remap from="/hoverboard_velocity_controller/cmd_vel" to="/cmd_vel"/>
-    </node>
-    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="hoverboard_joint_publisher hoverboard_velocity_controller">
-    </node>
-
     <!-- Desclare map file -->
-    <arg name="map_file" default="$(find autonomous_mobile_robot_navigation)/maps/basemen_g_per4_niceeeee.yaml"/>
+    <arg name="map_file" default="$(find autonomous_mobile_robot_navigation)/maps/lab.yaml"/>
 
     <!-- Map server -->
     <!-- Subscribe: /map -->
@@ -52,7 +42,7 @@
     <remap from="odom" to="/hoverboard_velocity_controller/odom" />
     <remap from="imu" to="/imu/data" />
     <node pkg="robot_pose_ekf" type="robot_pose_ekf" name="robot_pose_ekf">
-        <param name="output_frame" value="odom"/>
+        <param name="output_frame" value="odom_combined"/>
         <param name="base_footprint_frame" value="base_footprint"/>
         <param name="freq" value="100.0"/>
         <param name="sensor_timeout" value="1.0"/>
@@ -68,7 +58,7 @@
     <!-- Subscribe: /scan, /tf, /initialpose, /map -->
     <!-- Publish: /amcl_pose, /particlecloud, /tf -->
     <node pkg="amcl" type="amcl" name="amcl" output="screen">
-        <remap from="scan" to="scan"/>
+        <remap from="scan" to="/scan"/>
         <param name="odom_frame_id" value="odom"/>
         <param name="odom_model_type" value="diff-corrected"/>
         <param name="base_frame_id" value="base_link"/>
