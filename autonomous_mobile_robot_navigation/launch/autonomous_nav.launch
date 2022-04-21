@@ -23,7 +23,8 @@
   <include file="$(find hoverboard_driver)/launch/hoverboard.launch" />
 
   <!-- Desclare map file -->
-  <arg name="map_file" default="$(find autonomous_mobile_robot_navigation)/maps/basemen_g_per4_niceeeee_perfecttoooooo.yaml"/>
+  <!-- <arg name="map_file" default="$(find autonomous_mobile_robot_navigation)/maps/basemen_g_per4_niceeeee_perfecttoooooo.yaml"/> -->
+  <arg name="map_file" default="$(find autonomous_mobile_robot_navigation)/maps/lab.yaml"/>
 
   <!-- Robot model urdf -->
   <arg name="model" default="$(find autonomous_mobile_robot_navigation)/urdf/mobile_robot_v2.xacro"/>
