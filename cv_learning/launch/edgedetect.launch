@@ -1,7 +1,0 @@
-<launch>
-
-    <node name="cv_learning" pkg="cv_learning" type="cv_bridge_test" output="screen">
-        
-    </node>
-
-</launch>

@@ -91,12 +91,12 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        lidar:
+        right_wheel:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        right_wheel:
+        lidar:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -228,7 +228,7 @@ Visualization Manager:
       Length: 0.30000001192092896
       Line Style: Lines
       Line Width: 0.029999999329447746
-      Name: Path
+      Name: Local Path
       Offset:
         X: 0
         Y: 0
@@ -298,21 +298,6 @@ Visualization Manager:
   Value: true
   Views:
     Current:
-      # Angle: -1.5707999467849731
-      # Class: rviz/TopDownOrtho
-      # Enable Stereo Rendering:
-      #   Stereo Eye Separation: 0.05999999865889549
-      #   Stereo Focal Distance: 1
-      #   Swap Stereo Eyes: false
-      #   Value: false
-      # Invert Z Axis: false
-      # Name: Current View
-      # Near Clip Distance: 0.009999999776482582
-      # Scale: 38.854366302490234
-      # Target Frame: <Fixed Frame>
-      # Value: TopDownOrtho (rviz)
-      # X: 0.08689819276332855
-      # Y: -0.28481918573379517
       Class: rviz/Orbit
       Distance: 7.960309028625488
       Enable Stereo Rendering:

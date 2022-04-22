@@ -80,12 +80,19 @@
     <param name="initial_pose_a" value="0.0"/>
   </node>
 
+  <!-- Activated Dijkstra (commented if doesn't used)-->
+  <node pkg="unit2_pp" name="dijkstra_solution" type="unit2_solution_server.py" output="screen"/>
+
+
   <!-- Import move base -->
   <arg name="scan_topic" default="/scan"/>
   <arg name="cmd_vel_topic" default="/hoverboard_velocity_controller/cmd_vel"/>
   <arg name="odom_topic" default="/odom_combined"/>
 
+  <!-- Global path planner -->
   <arg name="base_global_planner" default="navfn/NavfnROS"/>
+  <arg name="base_global_planner" default="srv_client_plugin/SrvClientPlugin"/>
+  <!-- Local path planner -->
   <arg name="base_local_planner" default="dwa_local_planner/DWAPlannerROS"/>
 
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
