@@ -63,6 +63,7 @@ def clean_shutdown():
 if __name__ == '__main__':
   rospy.init_node('dijkstra_path_planning_service_server', log_level=rospy.INFO, anonymous=False)
   make_plan_service = rospy.Service("/move_base/SrvClientPlugin/make_plan", PathPlanningPlugin, make_plan)
+  # Publish to cmd_vel hoverboard
   cmd_vel = rospy.Publisher('/hoverboard_velocity_controller/cmd_vel', Twist, queue_size=5)
   rospy.on_shutdown(clean_shutdown)
 
