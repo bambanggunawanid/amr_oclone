@@ -37,8 +37,4 @@
   <depend>twist_mux</depend>
   <depend>nmea_navsat_driver</depend>
   <depend>moveit_ros_planning_interface</depend>
-
-  <!-- The export tag contains other, unspecified -->
-  <export>
-  </export>
 </package>

@@ -20,12 +20,8 @@
   <!-- Run RPLIDAR and IMU driver launch -->
   <include file="$(find rplidar_ros)/launch/rplidar.launch" />
   <include file="$(find mpu6050_driver)/launch/mpu6050_driver.launch" />
-  <!-- <include file="$(find hoverboard_driver)/launch/hoverboard.launch" /> -->
-    <rosparam file="$(find autonomous_mobile_robot_navigation)/config/hardware.yaml" command="load"/>
-    <rosparam file="$(find autonomous_mobile_robot_navigation)/config/controllers.yaml" command="load"/>
-    <node name="hoverboard_driver" pkg="hoverboard_driver" type="hoverboard_driver" output="screen"/>
-    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"
-        args="hoverboard_joint_publisher hoverboard_velocity_controller" />
+  <include file="$(find hoverboard_driver)/launch/hoverboard.launch" />
+
   <!-- Desclare map file -->
   <!-- <arg name="map_file" default="$(find autonomous_mobile_robot_navigation)/maps/basemen_g_per4_niceeeee_perfecttoooooo.yaml"/> -->
   <arg name="map_file" default="$(find autonomous_mobile_robot_navigation)/maps/lab.yaml"/>
@@ -94,8 +90,10 @@
   <arg name="odom_topic" default="/odom_combined"/>
 
   <!-- Global path planner -->
-  <arg name="base_global_planner" default="navfn/NavfnROS"/>
-  <!-- <arg name="base_global_planner" default="srv_client_plugin/SrvClientPlugin"/> -->
+  <!-- <arg name="base_global_planner" default="navfn/NavfnROS"/> -->
+  <arg name="base_global_planner" default="srv_client_plugin/SrvClientPlugin"/>
+  <!-- <arg name="base_global_planner" default="global_planner/GlobalPlanner"/> -->
+
   <!-- Local path planner -->
   <arg name="base_local_planner" default="dwa_local_planner/DWAPlannerROS"/>
 
@@ -107,11 +105,12 @@
     <!-- Costmap params -->
     <rosparam file="$(find autonomous_mobile_robot_navigation)/param/costmap_common_params.yaml" command="load" ns="global_costmap" />
     <rosparam file="$(find autonomous_mobile_robot_navigation)/param/costmap_common_params.yaml" command="load" ns="local_costmap" />
-    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/global_costmap_params.yaml" command="load" ns="global_costmap" />
-    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/local_costmap_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/local_costmap_params.yaml" command="load" />
 
     <!-- Global & Local Planner -->
     <rosparam file="$(find autonomous_mobile_robot_navigation)/param/planner_params.yaml" command="load"/>
+    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/global_planner_params.yaml" command="load"/>
 
     <!-- Remap possition -->
     <remap from="cmd_vel" to="$(arg cmd_vel_topic)"/>
