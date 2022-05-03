@@ -109,7 +109,7 @@
     <rosparam file="$(find autonomous_mobile_robot_navigation)/param/local_costmap_params.yaml" command="load" />
 
     <!-- Global & Local Planner -->
-    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/planner_params.yaml" command="load"/>
+    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/local_planner_params.yaml" command="load"/>
     <rosparam file="$(find autonomous_mobile_robot_navigation)/param/global_planner_params.yaml" command="load"/>
 
     <!-- Remap possition -->
