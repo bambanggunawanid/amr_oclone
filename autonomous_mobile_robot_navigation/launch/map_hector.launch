@@ -18,11 +18,11 @@
   <!-- Hoverboard usb port -->
   <param name="port" type="str" value="/dev/ttyHOVER"/>
 
+  <!-- Hoverboard Driver Setup Parameter -->
+  <include file="$(find hoverboard_driver)/launch/hoverboard.launch" />
   <!-- Run RPLIDAR and IMU driver launch -->
   <include file="$(find rplidar_ros)/launch/rplidar.launch" />
   <include file="$(find mpu6050_driver)/launch/mpu6050_driver.launch" />
-  <!-- Hoverboard Driver Setup Parameter -->
-  <include file="$(find hoverboard_driver)/launch/hoverboard.launch" />
 
   <!-- Robot model -->
   <arg name="model" default="$(find autonomous_mobile_robot_navigation)/urdf/mobile_robot_v2.xacro"/>

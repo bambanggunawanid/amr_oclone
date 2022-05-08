@@ -1,28 +1,21 @@
-obstacle_range: 10.0
-raytrace_range: 15.0
-footprint: [[-0.14, -0.14], [-0.14, 0.14], [0.14, 0.14], [0.14, -0.14]]
+obstacle_range: 10.0 # Maximum range sensor reading in meters that results in an obstacle being placed in the costmap
+raytrace_range: 10.0 # Outside of this range is considered free space
+
+# Footprint of the robot with (0,0) being the center (in meters)
+footprint: [[-0.20, -0.22], [-0.20, 0.22], [0.20, 0.22], [0.20, -0.22]]
+footprint_padding: 0.05
+
+# The static map created using SLAM is being published to this topic
 map_topic: /map
-# global_frame: odom_combined
-global_frame: map
-robot_base_frame: base_link
-update_frequency: 100.0
-publish_frequency: 100.0
-# update_frequency: 5.0
-# publish_frequency: 5.0
-rolling_window: true
-transform_tolerance: 0.2 # Width of the map in meters
-width: 75 # Height of the map in meters
-height: 75
-subscribe_to_updates: true
+map_type: costmap
+
+transform_tolerance: 1.0 # Delay in transform tf data that is tolerable in seconds
+publish_voxel_map: false
+always_send_full_costmap: true
 
 plugins:
-  - { name: static_layer, type: "costmap_2d::StaticLayer" }
   - { name: obstacle_layer, type: "costmap_2d::ObstacleLayer" }
   - { name: inflation_layer, type: "costmap_2d::InflationLayer" }
-
-static_layer:
-  map_topic: /map
-  subscribe_to_updates: false
 
 obstacle_layer:
   observation_sources: laser_scan_sensor
@@ -36,4 +29,5 @@ obstacle_layer:
     }
 
 inflation_layer:
-  inflation_radius: 1.5
+  inflation_radius: 1.5 # was 1.0
+  cost_scaling_factor: 1.0 # was 0.5

@@ -18,9 +18,9 @@
   <param name="port" type="str" value="/dev/ttyHOVER"/>
 
   <!-- Run RPLIDAR and IMU driver launch -->
+  <include file="$(find hoverboard_driver)/launch/hoverboard.launch" />
   <include file="$(find rplidar_ros)/launch/rplidar.launch" />
   <include file="$(find mpu6050_driver)/launch/mpu6050_driver.launch" />
-  <include file="$(find hoverboard_driver)/launch/hoverboard.launch" />
 
   <!-- Desclare map file -->
   <arg name="map_file" default="$(find autonomous_mobile_robot_navigation)/maps/basemen_g_per4_niceeeee_perfecttoooooo.yaml"/>
@@ -81,7 +81,7 @@
   </node>
 
   <!-- Activated Dijkstra (commented if doesn't used)-->
-  <node pkg="unit2_pp" name="dijkstra_solution" type="unit2_solution_server.py" output="screen"/>
+  <!-- <node pkg="unit2_pp" name="dijkstra_solution" type="unit2_solution_server.py" output="screen"/> -->
 
   <!-- Import move base -->
   <arg name="scan_topic" default="/scan"/>
