@@ -9,6 +9,7 @@ vscode
 RoboND-Perception-Project
 cartographer
 cartographer_ros
+Robotics_PicoDegree
 
 # Ignore files related to API keys
 .env
