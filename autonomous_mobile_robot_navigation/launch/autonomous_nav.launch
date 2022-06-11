@@ -11,20 +11,18 @@
   <node pkg="tf" type="static_transform_publisher" name="caster_broadcaster" args="0 0 0 0 0 0 base_link caster_wheel 100" />
   <node pkg="tf" type="static_transform_publisher" name="base_link_broadcaster" args="0 0 0.09 0 0 0 base_footprint base_link 100" />
 
-  <!-- map to odom will be provided by the AMCL -->
-  <node pkg="tf" type="static_transform_publisher" name="map_to_odom" args="0 0 0 0 0 0 map odom_combined 100" />
 
   <!-- Hoverboard usb port -->
   <param name="port" type="str" value="/dev/ttyHOVER"/>
 
   <!-- Run RPLIDAR and IMU driver launch -->
+  <include file="$(find hoverboard_driver)/launch/hoverboard.launch" />
   <include file="$(find rplidar_ros)/launch/rplidar.launch" />
   <include file="$(find mpu6050_driver)/launch/mpu6050_driver.launch" />
-  <include file="$(find hoverboard_driver)/launch/hoverboard.launch" />
 
   <!-- Desclare map file -->
-  <!-- <arg name="map_file" default="$(find autonomous_mobile_robot_navigation)/maps/basemen_g_per4_niceeeee_perfecttoooooo.yaml"/> -->
-  <arg name="map_file" default="$(find autonomous_mobile_robot_navigation)/maps/lab.yaml"/>
+  <arg name="map_file" default="$(find autonomous_mobile_robot_navigation)/maps/basemen_g_per4_niceeeee_perfecttoooooo.yaml"/>
+  <!-- <arg name="map_file" default="$(find autonomous_mobile_robot_navigation)/maps/lab.yaml"/> -->
 
   <!-- Robot model urdf -->
   <arg name="model" default="$(find autonomous_mobile_robot_navigation)/urdf/mobile_robot_v2.xacro"/>
@@ -81,8 +79,7 @@
   </node>
 
   <!-- Activated Dijkstra (commented if doesn't used)-->
-  <node pkg="unit2_pp" name="dijkstra_solution" type="unit2_solution_server.py" output="screen"/>
-
+  <!-- <node pkg="unit2_pp" name="dijkstra_solution" type="unit2_solution_server.py" output="screen"/> -->
 
   <!-- Import move base -->
   <arg name="scan_topic" default="/scan"/>
@@ -90,8 +87,8 @@
   <arg name="odom_topic" default="/odom_combined"/>
 
   <!-- Global path planner -->
-  <!-- <arg name="base_global_planner" default="navfn/NavfnROS"/> -->
-  <arg name="base_global_planner" default="srv_client_plugin/SrvClientPlugin"/>
+  <arg name="base_global_planner" default="navfn/NavfnROS"/>
+  <!-- <arg name="base_global_planner" default="srv_client_plugin/SrvClientPlugin"/> -->
   <!-- <arg name="base_global_planner" default="global_planner/GlobalPlanner"/> -->
 
   <!-- Local path planner -->
@@ -100,21 +97,22 @@
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
 
     <param name="base_global_planner" value="$(arg base_global_planner)"/>
-    <param name="base_local_planner" value="$(arg base_local_planner)"/>
+    <!-- <param name="base_local_planner" value="$(arg base_local_planner)"/> -->
 
+    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/planner_params.yaml" command="load"/>
+    <!-- Global & Local Planner -->
+    <!-- <rosparam file="$(find autonomous_mobile_robot_navigation)/param/global_planner_params.yaml" command="load"/> -->
     <!-- Costmap params -->
     <rosparam file="$(find autonomous_mobile_robot_navigation)/param/costmap_common_params.yaml" command="load" ns="global_costmap" />
     <rosparam file="$(find autonomous_mobile_robot_navigation)/param/costmap_common_params.yaml" command="load" ns="local_costmap" />
-    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/global_costmap_params.yaml" command="load" />
-    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/local_costmap_params.yaml" command="load" />
-
-    <!-- Global & Local Planner -->
-    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/planner_params.yaml" command="load"/>
-    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/global_planner_params.yaml" command="load"/>
+    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/global_costmap_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/local_costmap_params.yaml" command="load" ns="local_costmap" />
 
     <!-- Remap possition -->
     <remap from="cmd_vel" to="$(arg cmd_vel_topic)"/>
     <remap from="odom" to="$(arg odom_topic)"/>
     <remap from="scan" to="$(arg scan_topic)"/>
   </node>
+  <!-- map to odom will be provided by the AMCL -->
+  <node pkg="tf" type="static_transform_publisher" name="map_to_odom" args="0 0 0 0 0 0 map odom_combined 100" />
 </launch>
