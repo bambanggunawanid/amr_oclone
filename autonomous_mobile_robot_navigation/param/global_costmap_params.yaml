@@ -1,7 +1,24 @@
-global_frame: map
-rolling_window: false
-track_unknown_space: true
+global_costmap:
+  global_frame: map # Global reference frame for the costmaps
+  robot_base_frame: base_footprint # Base frame of the robot
+  update_frequency: 5.0
+  publish_frequency: 5.0
+  width: 70.0
+  height: 70.0
+  resolution: 0.1
+  origin_x: 0.0 #init robot position coordinate x
+  origin_y: 0.0 # init robot posisition coordinate y
+  static_map: true
+  rolling_window: false #you do not use the costmap to represent your complete environment, but only to represent your local surroundings
 
-plugins:
-  - {name: static,                  type: "costmap_2d::StaticLayer"}
-  - {name: inflation_g,               type: "costmap_2d::InflationLayer"}
+  plugins:
+    - { name: static_layer, type: "costmap_2d::StaticLayer" }
+    - { name: inflater_layer, type: "costmap_2d::InflationLayer" }
+
+  inflater_layer:
+    inflation_radius: 0.2 # was 0.1
+    cost_scaling_factor: 1.0 # was 0.5
+
+  static_layer:
+    map_topic: /map
+    subscribe_to_updates: false
