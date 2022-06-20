@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<launch>
+
+  <include file="$(find rplidar_ros)/launch/rplidar.launch" />
+
+  <rosparam file="$(find mobile_robot_autonomous_navigation)/config/controllers_hoverboard.yaml" command="load"/>
+  <rosparam file="$(find mobile_robot_autonomous_navigation)/config/joint_limits.yaml" command="load"/>
+
+  <arg name="model" default="$(find mobile_robot_autonomous_navigation)/urdf/mobile_robot_v2.xacro"/>
+
+  <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
+
+  <node name="hoverboard_driver" pkg="hoverboard_driver" type="hoverboard_driver" output="screen">
+    <remap from="/hoverboard_velocity_controller/cmd_vel" to="/cmd_vel"/>
+  </node>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" >
+  </node>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find mobile_robot_autonomous_navigation)/config/mapping_config.rviz"/>
+
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"
+        args="
+            hoverboard_joint_publisher
+            hoverboard_velocity_controller" >
+  </node>
+
+  <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering.py">
+		<remap from="/cmd_vel" to="/hoverboard_velocity_controller/cmd_vel"/>
+  </node>
+
+  <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
+    <param name="map_update_interval" value="5.0"/>
+	<param name="maxUrange" value="6.0"/>
+    <param name="maxRange" value="8.0"/>
+    <param name="linearUpdate" value="0.05"/>
+	<param name="angularUpdate" value="0.5"/>
+  </node>
+
+</launch>

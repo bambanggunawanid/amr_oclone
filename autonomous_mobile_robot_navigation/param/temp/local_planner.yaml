@@ -2,6 +2,16 @@ controller_frequency: 5.0
 recovery_behavior_enabled: true
 conservative_reset_dist: 0.2
 
+TebLocalPlannerROS:
+  max_trans_vel: 2.0
+  min_trans_vel: 0.05
+  max_rot_vel: 0.5
+  min_rot_vel: 0.2
+  max_vel_x: 2.7
+  min_vel_x: 0.2
+  max_vel_y: 2.0
+  min_vel_y: 0
+
 NavfnROS:
   allow_unknown: true # Specifies whether or not to allow navfn to create plans that traverse unknown space.
   default_tolerance: 0.1 # A tolerance on the goal point for the planner.
