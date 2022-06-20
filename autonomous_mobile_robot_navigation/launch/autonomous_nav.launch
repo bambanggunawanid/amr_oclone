@@ -10,7 +10,9 @@
   <node pkg="tf" type="static_transform_publisher" name="dummy_broadcaster" args="0 0 0 0 0 0 base_link dummy 100" />
   <node pkg="tf" type="static_transform_publisher" name="caster_broadcaster" args="0 0 0 0 0 0 base_link caster_wheel 100" />
   <node pkg="tf" type="static_transform_publisher" name="base_link_broadcaster" args="0 0 0.09 0 0 0 base_footprint base_link 100" />
-
+  <!-- odom to base_footprint transform will be provided by the robot_pose_ekf node -->
+  <!-- map to odom will be provided by the AMCL -->
+  <node pkg="tf" type="static_transform_publisher" name="map_to_odom" args="0 0 0 0 0 0 map odom_combined 100" />
 
   <!-- Hoverboard usb port -->
   <param name="port" type="str" value="/dev/ttyHOVER"/>
@@ -21,8 +23,7 @@
   <include file="$(find mpu6050_driver)/launch/mpu6050_driver.launch" />
 
   <!-- Desclare map file -->
-  <arg name="map_file" default="$(find autonomous_mobile_robot_navigation)/maps/basemen_g_per4_niceeeee_perfecttoooooo.yaml"/>
-  <!-- <arg name="map_file" default="$(find autonomous_mobile_robot_navigation)/maps/lab.yaml"/> -->
+  <arg name="map_file" default="$(find autonomous_mobile_robot_navigation)/maps/robotikGKMTes.yaml"/>
 
   <!-- Robot model urdf -->
   <arg name="model" default="$(find autonomous_mobile_robot_navigation)/urdf/mobile_robot_v2.xacro"/>
@@ -67,7 +68,7 @@
     <remap from="scan" to="scan"/>
     <param name="odom_frame_id" value="odom_combined"/>
     <param name="odom_model_type" value="diff-corrected"/>
-    <param name="base_frame_id" value="base_link"/>
+    <param name="base_frame_id" value="base_footprint"/>
     <param name="update_min_d" value="0.1"/>
     <param name="update_min_a" value="0.2"/>
     <param name="min_particles" value="500"/>
@@ -78,45 +79,5 @@
     <param name="initial_pose_a" value="0.0"/>
   </node>
 
-  <!-- Activated Dijkstra (commented if doesn't used)-->
-  <!-- <node pkg="unit2_pp" name="dijkstra_solution" type="unit2_solution_server.py" output="screen"/> -->
-
-  <!-- Import move base -->
-  <arg name="scan_topic" default="/scan"/>
-  <arg name="cmd_vel_topic" default="/hoverboard_velocity_controller/cmd_vel"/>
-  <arg name="odom_topic" default="/odom_combined"/>
-
-  <!-- Global path planner -->
-  <arg name="base_global_planner" default="navfn/NavfnROS"/>
-  <!-- <arg name="base_global_planner" default="srv_client_plugin/SrvClientPlugin"/> -->
-  <!-- <arg name="base_global_planner" default="global_planner/GlobalPlanner"/> -->
-
-  <!-- Local path planner -->
-  <arg name="base_local_planner" default="dwa_local_planner/DWAPlannerROS"/>
-
-  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
-
-    <param name="base_global_planner" value="$(arg base_global_planner)"/>
-    <!-- <param name="base_local_planner" value="$(arg base_local_planner)"/> -->
-
-    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/planner_params.yaml" command="load"/>
-    <!-- Global & Local Planner -->
-    <!-- <rosparam file="$(find autonomous_mobile_robot_navigation)/param/global_planner_params.yaml" command="load"/> -->
-    <!-- Costmap params -->
-    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/costmap_common_params.yaml" command="load" ns="global_costmap" />
-    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/costmap_common_params.yaml" command="load" ns="local_costmap" />
-    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/global_costmap_params.yaml" command="load" />
-    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/local_costmap_params.yaml" command="load" />
-
-    <!-- Global & Local Planner -->
-    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/local_planner_params.yaml" command="load"/>
-    <rosparam file="$(find autonomous_mobile_robot_navigation)/param/global_planner_params.yaml" command="load"/>
-
-    <!-- Remap possition -->
-    <remap from="cmd_vel" to="$(arg cmd_vel_topic)"/>
-    <remap from="odom" to="$(arg odom_topic)"/>
-    <remap from="scan" to="$(arg scan_topic)"/>
-  </node>
-  <!-- map to odom will be provided by the AMCL -->
-  <node pkg="tf" type="static_transform_publisher" name="map_to_odom" args="0 0 0 0 0 0 map odom_combined 100" />
+ <include file="$(find mobile_robot_autonomous_navigation)/launch/move_base.launch" />
 </launch>

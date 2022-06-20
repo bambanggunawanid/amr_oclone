@@ -3,8 +3,8 @@ global_costmap:
   robot_base_frame: base_footprint # Base frame of the robot
   update_frequency: 5.0
   publish_frequency: 5.0
-  width: 70.0
-  height: 70.0
+  width: 10.0
+  height: 10.0
   resolution: 0.1
   origin_x: 0.0 #init robot position coordinate x
   origin_y: 0.0 # init robot posisition coordinate y

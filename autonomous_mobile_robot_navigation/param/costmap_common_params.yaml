@@ -1,15 +1,15 @@
-obstacle_range: 10.0 # Maximum range sensor reading in meters that results in an obstacle being placed in the costmap
-raytrace_range: 10.0 # Outside of this range is considered free space
+obstacle_range: 1.0 # Maximum range sensor reading in meters that results in an obstacle being placed in the costmap
+raytrace_range: 1.0 # Outside of this range is considered free space
 
 # Footprint of the robot with (0,0) being the center (in meters)
-footprint: [[-0.20, -0.22], [-0.20, 0.22], [0.20, 0.22], [0.20, -0.22]]
+footprint: [[-0.20, -0.22], [-0.32, 0.32], [0.20, 0.22], [0.30, -0.32]]
 footprint_padding: 0.05
 
 # The static map created using SLAM is being published to this topic
 map_topic: /map
 map_type: costmap
 
-transform_tolerance: 1.0 # Delay in transform tf data that is tolerable in seconds
+transform_tolerance: 0.5 # Delay in transform tf data that is tolerable in seconds
 publish_voxel_map: false
 always_send_full_costmap: true
 
@@ -17,7 +17,7 @@ static:
   map_topic: /map
   subscribe_to_updates: true
 
-obstacles_laser:
+obstacles_layer:
   observation_sources: laser
   laser:
     {
@@ -29,8 +29,12 @@ obstacles_laser:
       inf_is_valid: true,
     }
 
-inflation_g:
+obstacles_laser:
+    observation_sources: laser
+    laser: {data_type: LaserScan, clearing: true, marking: true, topic: scan, inf_is_valid: true}
+
+inflater_global:
   inflation_radius: 0.06
 
-inflation_l:
+inflater_layer:
   inflation_radius: 0.03

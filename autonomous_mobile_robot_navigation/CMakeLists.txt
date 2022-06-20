@@ -51,7 +51,7 @@ include_directories(
 )
 
 
-add_library(i2c_ros src/i2c_ros.cpp)
+## add_library(i2c_ros src/i2c_ros.cpp)
 
-add_executable(mobile_robot_hardware_interface src/robot_hardware_interface_node.cpp)
-target_link_libraries(mobile_robot_hardware_interface i2c_ros ${catkin_LIBRARIES})
+## add_executable(mobile_robot_hardware_interface src/robot_hardware_interface_node.cpp)
+## target_link_libraries(mobile_robot_hardware_interface i2c_ros ${catkin_LIBRARIES})
