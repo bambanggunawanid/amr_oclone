@@ -1,7 +1,7 @@
 # For parameter descriptions, please refer to the template parameter files for each node.
 
 ekf_se_odom: # Used only for broadcasting odom to base_link transforms
-  frequency: 30
+  frequency: 100
   sensor_timeout: 0.1
   two_d_mode: true
   transform_time_offset: 0.0
@@ -25,7 +25,7 @@ ekf_se_odom: # Used only for broadcasting odom to base_link transforms
                  false, false, false]  # x'', y'', z''
   odom0_queue_size: 10
   odom0_nodelay: true
-  odom0_differential: false
+  odom0_differential: true
   odom0_relative: false
 
 # -------------------------------------

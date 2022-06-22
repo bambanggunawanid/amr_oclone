@@ -1,4 +1,0 @@
-global_frame: odom_combined
-rolling_window: true
-width: 6
-height: 6

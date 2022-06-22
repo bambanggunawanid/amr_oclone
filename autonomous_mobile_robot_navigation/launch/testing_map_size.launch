@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Desclare launch rviz first -->
+  <arg name="use_rviz" default="true"/>
+  <param name="/use_sim_time" value="false"/>
+  <!-- Desclare map file -->
+  <arg name="map_file" default="$(find autonomous_mobile_robot_navigation)/maps/MapGedungA1_1.yaml"/>
+  <!-- <arg name="map_file" default="$(find autonomous_mobile_robot_navigation)/maps/basemen_g_per4_niceeeee_perfecttoooooo.yaml"/> -->
+  <!-- Robot model urdf -->
+  <arg name="model" default="$(find autonomous_mobile_robot_navigation)/urdf/mobile_robot_v2.xacro"/>
+  <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
+
+  <!-- Robot join state -->
+  <rosparam file="$(find autonomous_mobile_robot_navigation)/config/joint_limits.yaml" command="load"/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+  <!-- Rviz config param declare -->
+  <!-- Subscribe:  -->
+  <!-- Publish:  -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find autonomous_mobile_robot_navigation)/rviz/nav_config.rviz"/>
+
+  <!-- Map server -->
+  <!-- Subscribe: /map -->
+  <!-- Publish: /map, /map_metadata -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" respawn="true" />
+
+</launch>
