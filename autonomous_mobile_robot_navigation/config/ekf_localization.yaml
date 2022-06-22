@@ -10,9 +10,9 @@ ekf_se_odom: # Used only for broadcasting odom to base_link transforms
   debug: false
 
   map_frame: map
-  odom_frame: odom
+  odom_frame: odom_combined
   base_link_frame: base_link
-  # world_frame: odom
+  world_frame: odom_combined
 
 # -------------------------------------
 # Wheel odometry:
