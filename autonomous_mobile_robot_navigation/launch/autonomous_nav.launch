@@ -1,8 +1,5 @@
 <?xml version="1.0"?>
 <launch>
-  <!-- Desclare launch rviz first -->
-  <arg name="use_rviz" default="true"/>
-  <param name="/use_sim_time" value="false"/>
 
   <!-- Static transformation for TF -->
   <node pkg="tf" type="static_transform_publisher" name="base_laser_broadcaster" args="0 0.06 0.02 0 0 0 base_link laser 100" />
@@ -10,10 +7,7 @@
   <node pkg="tf" type="static_transform_publisher" name="dummy_broadcaster" args="0 0 0 0 0 0 base_link dummy 100" />
   <node pkg="tf" type="static_transform_publisher" name="caster_broadcaster" args="0 0 0 0 0 0 base_link caster_wheel 100" />
   <node pkg="tf" type="static_transform_publisher" name="base_link_broadcaster" args="0 0 0.09 0 0 0 base_footprint base_link 100" />
-  <!-- odom to base_footprint transform will be provided by the robot_pose_ekf node -->
-  <!-- map to odom will be provided by the AMCL -->
-  <!-- <node pkg="tf" type="static_transform_publisher" name="map_to_odom" args="0 0 0 0 0 0 map odom_combined 100" /> -->
-
+  
   <!-- Hoverboard usb port -->
   <param name="port" type="str" value="/dev/ttyHOVER"/>
 
