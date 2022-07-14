@@ -21,7 +21,9 @@ obstacles_laser:
     laser: {data_type: LaserScan, clearing: true, marking: true, topic: scan, inf_is_valid: true}
 
 inflation_g:
-    inflation_radius: 0.5
+    #inflation_radius: 0.5
+    inflation_radius: 0.01
 
 inflation_l:
-    inflation_radius: 0.5
+    #inflation_radius: 0.5
+    inflation_radius: 0.01
