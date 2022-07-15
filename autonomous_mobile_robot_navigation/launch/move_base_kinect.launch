@@ -10,7 +10,7 @@
   <arg name="odom_topic" default="/odom_combined"/>
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
     <param name="base_global_planner" value="$(arg base_global_planner)"/>
-    <param name="base_local_planner" value="$(arg base_local_planner)"/>
+    <param name="base_local_planner" value="$(arg base_local_planner)"/> 
 
     <rosparam file="$(find autonomous_mobile_robot_navigation)/param/planner.yaml" command="load"/>
     <rosparam file="$(find autonomous_mobile_robot_navigation)/param/common_costmap.yaml" command="load" ns="global_costmap" />

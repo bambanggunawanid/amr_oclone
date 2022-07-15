@@ -24,4 +24,5 @@ inflation_g:
     inflation_radius: 0.5
 
 inflation_l:
-    inflation_radius: 0.5
+    inflation_radius: 0.1
+#inflation_radius: 0.5
