@@ -1,11 +1,5 @@
 <?xml version="1.0"?>
 <launch>
-  <!-- Desclare launch rviz first -->
-  <!-- <arg name="use_rviz" default="true"/> -->
-  <!-- <param name="/use_sim_time" value="false"/> -->
-
-  <!-- Static transformation for TF -->
-
   <!-- Static transformation for TF -->
   <node pkg="tf" type="static_transform_publisher" name="base_laser_broadcaster" args="0 0.06 0.02 0 0 0 base_link laser 100" />
   <node pkg="tf" type="static_transform_publisher" name="imu_broadcaster" args="0 0.06 0.02 0 0 0 base_link imu 100" />
@@ -13,17 +7,11 @@
   <node pkg="tf" type="static_transform_publisher" name="caster_broadcaster" args="0 0 0 0 0 0 base_link caster_wheel 100" />
   <node pkg="tf" type="static_transform_publisher" name="base_link_broadcaster" args="0 0 0.09 0 0 0 base_footprint base_link 100" />
 
-  <!-- odom to base_footprint transform will be provided by the robot_pose_ekf node -->
-  <!-- <node pkg="tf" type="static_transform_publisher" name="hector_scan_to_odom" args="0 0 0 0 0 0 scanmatcher_frame odom_combined 100" /> -->
-  <!-- <node pkg="tf" type="static_transform_publisher" name="hector_scan_to_odom" args="0 0 0 0 0 0 scanmatcher_frame odom_combined 100" /> -->
-  <!-- <node pkg="tf" type="static_transform_publisher" name="map_to_hector" args="0 0 0 0 0 0 map scanmatcher_frame 100" /> -->
-
   <!-- Hoverboard usb port -->
   <param name="port" type="str" value="/dev/ttyHOVER"/>
 
-  <!-- Hoverboard Driver Setup Parameter -->
+  <!-- Run RPLIDAR and IMU driver launch Hoverboard Driver Setup Parameter -->
   <include file="$(find hoverboard_driver)/launch/hoverboard.launch" />
-  <!-- Run RPLIDAR and IMU driver launch -->
   <include file="$(find rplidar_ros)/launch/rplidar.launch" />
   <include file="$(find mpu6050_driver)/launch/mpu6050_driver.launch" />
 
@@ -41,9 +29,6 @@
   <!-- Publish: /robot_pose_ekf/odom_combined -->
   <remap from="odom" to="/hoverboard_velocity_controller/odom" />
   <remap from="imu" to="/imu/data" />
-  <!-- <node pkg="robot_pose_ekf" type="robot_pose_ekf" name="robot_pose_ekf">
-     <rosparam file="$(find autonomous_mobile_robot_navigation)/config/ekf_localization.yaml" command="load"/>
-  </node> -->
   <node pkg="robot_pose_ekf" type="robot_pose_ekf" name="robot_pose_ekf">
     <param name="output_frame" value="odom_combined"/>
     <param name="base_footprint_frame" value="base_footprint"/>

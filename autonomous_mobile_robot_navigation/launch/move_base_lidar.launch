@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
 <launch>
-
   <arg name="base_global_planner" default="navfn/NavfnROS"/>
   <arg name="base_local_planner" default="dwa_local_planner/DWAPlannerROS"/>
   <!-- Import move base -->
@@ -8,12 +7,9 @@
   <arg name="cmd_vel_topic" default="/hoverboard_velocity_controller/cmd_vel"/>
   <arg name="odom_topic" default="/odom_combined"/>
 
-
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
-
     <param name="base_global_planner" value="$(arg base_global_planner)"/>
     <param name="base_local_planner" value="$(arg base_local_planner)"/>
-
     <rosparam file="$(find autonomous_mobile_robot_navigation)/param/planner.yaml" command="load"/>
     <rosparam file="$(find autonomous_mobile_robot_navigation)/param/common_costmap.yaml" command="load" ns="global_costmap" />
     <rosparam file="$(find autonomous_mobile_robot_navigation)/param/common_costmap.yaml" command="load" ns="local_costmap" />
@@ -24,5 +20,4 @@
     <remap from="odom" to="$(arg odom_topic)"/>
     <remap from="scan" to="$(arg scan_topic)"/>
   </node>
-
 </launch>
