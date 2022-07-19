@@ -1,14 +1,5 @@
 controller_frequency: 1.0
-<<<<<<< HEAD
-recovery_behavior_enabled: false
-#recovery_behavior_enabled: true
-# conservative_reset_dist: 0.5
-# oscillation_timeout: 0.0
-# oscillation_distance: 0.0
-# shutdown_costmaps: false
-=======
 recovery_behavior_enabled: true
->>>>>>> 777fe283f73911776d0b11e62c8a11c8be48b3da
 
 #planner frequency
 planner_frequency: 2.0

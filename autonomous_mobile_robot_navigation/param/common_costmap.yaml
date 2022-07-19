@@ -25,10 +25,5 @@ inflation_g:
     inflation_radius: 0.01
 
 inflation_l:
-<<<<<<< HEAD
-    inflation_radius: 0.1
-#inflation_radius: 0.5
-=======
     #inflation_radius: 0.5
     inflation_radius: 0.01
->>>>>>> 777fe283f73911776d0b11e62c8a11c8be48b3da
