@@ -6,6 +6,7 @@
   <node pkg="tf" type="static_transform_publisher" name="dummy_broadcaster" args="0 0 0 0 0 0 base_link dummy 100" />
   <node pkg="tf" type="static_transform_publisher" name="caster_broadcaster" args="0 0 0 0 0 0 base_link caster_wheel 100" />
   <node pkg="tf" type="static_transform_publisher" name="base_link_broadcaster" args="0 0 0.09 0 0 0 base_footprint base_link 100" />
+  <node pkg="tf" type="static_transform_publisher" name="scan_matcher_to_odom" args="0 0 0.09 0 0 0 scanmatcher_frame odom_combined 100" />
 
   <!-- Hoverboard usb port -->
   <param name="port" type="str" value="/dev/ttyHOVER"/>
